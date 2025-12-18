@@ -1,5 +1,5 @@
-/obj/Debug/net9.0-windows/Presentation/Controls/HeartMonitorGraph.baml
-/obj/Debug/net9.0-windows/Presentation/Controls/HeartMonitorGraph.g.cs
+/obj/Debug/net9.0-windows/Presentation/Controls/MonitorGraph.baml
+/obj/Debug/net9.0-windows/Presentation/Controls/MonitorGraph.g.cs
 /obj/Debug/net9.0-windows/Presentation/Views/PatientDetailsWindow.baml
 /obj/Debug/net9.0-windows/Presentation/Views/PatientDetailsWindow.g.cs
 /obj/Debug/net9.0-windows/refint/WPFTest.dll
@@ -369,3 +369,4 @@
 /obj/WPFTest.csproj.nuget.g.props
 /obj/WPFTest.csproj.nuget.g.targets
 bin/
+obj/

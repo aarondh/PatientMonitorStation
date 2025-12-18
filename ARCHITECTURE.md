@@ -55,7 +55,7 @@ This WPF application demonstrates hexagonal architecture (ports and adapters) wi
   - `ViewModelBase`: Base class for view models with INotifyPropertyChanged
 
 - **Controls**: Custom WPF controls
-  - `HeartMonitorGraph`: Real-time graph visualization control
+  - `MonitorGraph`: Real-time graph visualization control
 
 ## Key Features
 

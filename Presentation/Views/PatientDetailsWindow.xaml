@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:WPFTest.Presentation.Controls"
         mc:Ignorable="d"
         Title="Patient Details" Height="600" Width="800"
         Background="#0f0f0f">
@@ -10,82 +11,8 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel>
                 <!-- Patient Information Section -->
-                <Border Background="#1a1a1a"
-                        BorderBrush="#2ECC71"
-                        BorderThickness="1"
-                        CornerRadius="10"
-                        Padding="15"
-                        Margin="0,0,0,10">
-                    <StackPanel>
-
-                        <!-- Horizontal Info Grid -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <!-- Patient Name (Full Width) -->
-                            <StackPanel Grid.Column="0"  Margin="0,0,0,15">
-                                <TextBlock Text="Patient Name"
-                                        FontSize="12"
-                                        Foreground="#888"
-                                        Margin="0,0,0,5"/>
-                                <TextBlock Text="{Binding Patient.FullName}"
-                                        FontSize="24"
-                                        FontWeight="Bold"
-                                        Foreground="#2ECC71"/>
-                            </StackPanel>
-                            <!-- Age -->
-                            <StackPanel Grid.Column="1" Margin="0,0,10,0">
-                                <TextBlock Text="Age"
-                                           FontSize="12"
-                                           Foreground="#888"
-                                           Margin="0,0,0,5"/>
-                                <TextBlock FontSize="16"
-                                           Foreground="#fff">
-                                    <Run Text="{Binding Patient.Age, Mode=OneWay}"/>
-                                    <Run Text=" years"/>
-                                </TextBlock>
-                            </StackPanel>
-
-                            <!-- Date of Birth -->
-                            <StackPanel Grid.Column="2" Margin="0,0,10,0">
-                                <TextBlock Text="Date of Birth"
-                                           FontSize="12"
-                                           Foreground="#888"
-                                           Margin="0,0,0,5"/>
-                                <TextBlock Text="{Binding Patient.DateOfBirth, StringFormat='{}{0:MMMM dd, yyyy}'}"
-                                           FontSize="16"
-                                           Foreground="#fff"/>
-                            </StackPanel>
-
-                            <!-- Primary Care Giver -->
-                            <StackPanel Grid.Column="3" Margin="0,0,10,0">
-                                <TextBlock Text="Primary Care Giver"
-                                           FontSize="12"
-                                           Foreground="#888"
-                                           Margin="0,0,0,5"/>
-                                <TextBlock Text="{Binding Patient.PrimaryCareGiver}"
-                                           FontSize="16"
-                                           Foreground="#fff"/>
-                            </StackPanel>
-
-                            <!-- Room -->
-                            <StackPanel Grid.Column="4">
-                                <TextBlock Text="Room"
-                                           FontSize="12"
-                                           Foreground="#888"
-                                           Margin="0,0,0,5"/>
-                                <TextBlock Text="{Binding Patient.RoomId}"
-                                           FontSize="16"
-                                           Foreground="#fff"/>
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
-                </Border>
+                <controls:PatientInformationControl DataContext="{Binding Patient}" 
+                                                    Margin="0,0,0,10"/>
 
                 <!-- Vital Signs Section -->
                 <Border Background="#1a1a1a"
@@ -259,7 +186,7 @@
                                         <TextBlock Text="{Binding Patient.CurrentSpO2}"
                                                    FontSize="24"
                                                    FontWeight="Bold"
-                                                   Foreground="#9B59B6"/>
+                                                   Foreground="#fff"/>
                                         <TextBlock Text=" %"
                                                    FontSize="14"
                                                    Foreground="#888"

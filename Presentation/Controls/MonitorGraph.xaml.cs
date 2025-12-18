@@ -6,13 +6,13 @@ using System.Windows.Shapes;
 
 namespace WPFTest.Presentation.Controls;
 
-public partial class HeartMonitorGraph : UserControl
+public partial class MonitorGraph : UserControl
 {
     public static readonly DependencyProperty DataProperty =
         DependencyProperty.Register(
             nameof(Data),
             typeof(INotifyCollectionChanged),
-            typeof(HeartMonitorGraph),
+            typeof(MonitorGraph),
             new PropertyMetadata(null, OnDataChanged));
 
     public INotifyCollectionChanged? Data
@@ -25,7 +25,7 @@ public partial class HeartMonitorGraph : UserControl
         DependencyProperty.Register(
             nameof(StrokeColor),
             typeof(Color),
-            typeof(HeartMonitorGraph),
+            typeof(MonitorGraph),
             new PropertyMetadata(Color.FromRgb(46, 204, 113), OnStrokeColorChanged));
 
     public Color StrokeColor
@@ -36,7 +36,7 @@ public partial class HeartMonitorGraph : UserControl
 
     private readonly Polyline _graphLine;
 
-    public HeartMonitorGraph()
+    public MonitorGraph()
     {
         InitializeComponent();
 
@@ -53,7 +53,7 @@ public partial class HeartMonitorGraph : UserControl
 
     private static void OnDataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = (HeartMonitorGraph)d;
+        var control = (MonitorGraph)d;
 
         if (e.OldValue is INotifyCollectionChanged oldCollection)
         {
@@ -69,7 +69,7 @@ public partial class HeartMonitorGraph : UserControl
 
     private static void OnStrokeColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        var control = (HeartMonitorGraph)d;
+        var control = (MonitorGraph)d;
         var newColor = (Color)e.NewValue;
         control._graphLine.Stroke = new SolidColorBrush(newColor);
     }
