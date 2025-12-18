@@ -2,9 +2,9 @@ using WPFTest.Domain.Entities;
 
 namespace WPFTest.Domain.Ports;
 
-public interface IHeartRateMonitor
+public interface IEcgMonitor
 {
-    IObservable<HeartRateReading> GetHeartRateStream(string patientId);
+    IObservable<EcgReading> GetHeartRateStream(string patientId);
     void StartMonitoring(string patientId);
     void StopMonitoring(string patientId);
 }

@@ -32,10 +32,10 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:PatientVitalSignsControl DataContext="{Binding}" 
-                                                               Margin="5"
-                                                               VerticalAlignment="Stretch"
-                                                               HorizontalAlignment="Stretch"/>
+                            <controls:PatientMonitorsControl DataContext="{Binding}"
+                                                             Margin="5"
+                                                             VerticalAlignment="Stretch"
+                                                             HorizontalAlignment="Stretch"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

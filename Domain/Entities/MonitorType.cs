@@ -1,6 +1,6 @@
-namespace WPFTest.Presentation.ViewModels;
+namespace WPFTest.Domain.Entities;
 
-public enum VitalSignType
+public enum MonitorType
 {
     HeartRate,
     LeadI,

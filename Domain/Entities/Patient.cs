@@ -7,16 +7,17 @@ public class Patient
     public string LastName { get; init; } = string.Empty;
     public DateTime DateOfBirth { get; init; }
     public string PrimaryCareGiver { get; init; } = string.Empty;
-    public string RoomId { get; set; } = string.Empty;
 
-    public Patient(string id, string firstName, string lastName, DateTime dateOfBirth, string primaryCareGiver, string roomId)
+    public Patient()
+    {
+    }
+    public Patient(string id, string firstName, string lastName, DateTime dateOfBirth, string primaryCareGiver)
     {
         Id = id;
         FirstName = firstName;
         LastName = lastName;
         DateOfBirth = dateOfBirth;
         PrimaryCareGiver = primaryCareGiver;
-        RoomId = roomId;
     }
 
     public string FullName => $"{FirstName} {LastName}";

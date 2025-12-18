@@ -3,20 +3,20 @@ using System.Reactive.Subjects;
 using WPFTest.Domain.Entities;
 using WPFTest.Domain.Ports;
 
-namespace WPFTest.Infrastructure.HeartRateMonitor;
+namespace WPFTest.Infrastructure.EcgMonitor;
 
-public class FakeHeartRateMonitor : IHeartRateMonitor, IDisposable
+public class FakeEcgMonitor : IEcgMonitor, IDisposable
 {
-    private readonly Dictionary<string, Subject<HeartRateReading>> _streams = new();
+    private readonly Dictionary<string, Subject<EcgReading>> _streams = new();
     private readonly Dictionary<string, IDisposable> _timers = new();
     private readonly Dictionary<string, HeartBeatGenerator> _generators = new();
     private readonly Random _random = new();
 
-    public IObservable<HeartRateReading> GetHeartRateStream(string patientId)
+    public IObservable<EcgReading> GetHeartRateStream(string patientId)
     {
         if (!_streams.ContainsKey(patientId))
         {
-            _streams[patientId] = new Subject<HeartRateReading>();
+            _streams[patientId] = new Subject<EcgReading>();
         }
         return _streams[patientId].AsObservable();
     }
@@ -30,7 +30,7 @@ public class FakeHeartRateMonitor : IHeartRateMonitor, IDisposable
 
         if (!_streams.ContainsKey(patientId))
         {
-            _streams[patientId] = new Subject<HeartRateReading>();
+            _streams[patientId] = new Subject<EcgReading>();
         }
 
         var generator = new HeartBeatGenerator(_random);
@@ -99,7 +99,7 @@ internal class HeartBeatGenerator
         _slowDriftPhase = random.NextDouble() * Math.PI * 2;
     }
 
-    public HeartRateReading GetNextReading()
+    public EcgReading GetNextReading()
     {
         var breathingVariation = Math.Sin(_breathingPhase) * 3.0;
         var slowDrift = Math.Sin(_slowDriftPhase) * 5.0;
@@ -126,7 +126,7 @@ internal class HeartBeatGenerator
         if (_breathingPhase > Math.PI * 2) _breathingPhase -= Math.PI * 2;
         if (_slowDriftPhase > Math.PI * 2) _slowDriftPhase -= Math.PI * 2;
 
-        return new HeartRateReading(
+        return new EcgReading(
             DateTime.Now,
             (int)Math.Max(40, Math.Min(180, heartRate)),
             (int)Math.Max(40, Math.Min(180, leadI)),

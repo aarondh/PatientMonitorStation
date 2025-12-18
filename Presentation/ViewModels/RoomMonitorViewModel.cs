@@ -34,12 +34,13 @@ public class RoomMonitorViewModel : ViewModelBase, IDisposable
         RoomId = room.Id;
         RoomName = room.Name;
 
-        var patients = await _monitoringService.GetPatientsByRoomIdAsync(room.Id);
+        var episodes = await _monitoringService.GetAllEpisodesOfCareAsync();
+        var roomEpisodes = episodes.Where(e => e.RoomId == room.Id);
 
-        foreach (var patient in patients)
+        foreach (var episode in roomEpisodes)
         {
             var patientViewModel = new PatientMonitorViewModel(_monitoringService);
-            patientViewModel.Initialize(patient);
+            patientViewModel.Initialize(episode);
             Patients.Add(patientViewModel);
         }
     }

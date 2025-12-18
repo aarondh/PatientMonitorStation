@@ -66,24 +66,21 @@ public class MainViewModel : ViewModelBase
 
     public async Task InitializeAsync()
     {
-        var rooms = await _monitoringService.GetAllRoomsAsync();
+        var episodes = await _monitoringService.GetAllEpisodesOfCareAsync();
 
-        foreach (var room in rooms)
+        foreach (var episode in episodes)
         {
-            var patients = await _monitoringService.GetPatientsByRoomIdAsync(room.Id);
-
-            foreach (var patient in patients)
-            {
-                var patientViewModel = new PatientMonitorViewModel(_monitoringService);
-                // Don't initialize monitoring yet - just set properties
-                patientViewModel.PatientId = patient.Id;
-                patientViewModel.FirstName = patient.FirstName;
-                patientViewModel.LastName = patient.LastName;
-                patientViewModel.DateOfBirth = patient.DateOfBirth;
-                patientViewModel.PrimaryCareGiver = patient.PrimaryCareGiver;
-                patientViewModel.RoomId = patient.RoomId;
-                AllPatients.Add(patientViewModel);
-            }
+            var patientViewModel = new PatientMonitorViewModel(_monitoringService);
+            // Don't initialize monitoring yet - just set properties
+            patientViewModel.PatientId = episode.Patient.Id;
+            patientViewModel.FirstName = episode.Patient.FirstName;
+            patientViewModel.LastName = episode.Patient.LastName;
+            patientViewModel.DateOfBirth = episode.Patient.DateOfBirth;
+            patientViewModel.PrimaryCareGiver = episode.Patient.PrimaryCareGiver;
+            patientViewModel.RoomName = episode.Room.Name;
+            patientViewModel.ProfileName = episode.MonitorProfile.ProfileName;
+            patientViewModel.MonitorSettings = episode.MonitorProfile.MonitorSettings;
+            AllPatients.Add(patientViewModel);
         }
 
         // Auto-select first 8 patients for detailed view
@@ -172,7 +169,7 @@ public class MainViewModel : ViewModelBase
 
             if (PatientDoubleClicked != null)
             {
-                _detailsViewModel.Patient = PatientDoubleClicked;
+                _detailsViewModel.PatientMonitor = PatientDoubleClicked;
             }
             _detailsWindow.Show();
         };
@@ -191,7 +188,7 @@ public class MainViewModel : ViewModelBase
 
         if (_detailsViewModel != null && PatientDoubleClicked != null)
         {
-            _detailsViewModel.Patient = PatientDoubleClicked;
+            _detailsViewModel.PatientMonitor = PatientDoubleClicked;
         }
     }
 

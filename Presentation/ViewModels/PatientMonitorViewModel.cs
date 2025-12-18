@@ -12,6 +12,7 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
     private IDisposable? _respiratorySubscription;
     private IDisposable? _pulseOximetrySubscription;
     private string _patientId = string.Empty;
+    private string _profileName = string.Empty;
     private string _firstName = string.Empty;
     private string _lastName = string.Empty;
     private DateTime _dateOfBirth;
@@ -32,6 +33,17 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
         set => SetProperty(ref _patientId, value);
     }
 
+    public string ProfileName
+    {
+        get => _profileName;
+        set
+        {
+            if (SetProperty(ref _profileName, value))
+            {
+                OnPropertyChanged(nameof(FullName));
+            }
+        }
+    }
     public string FirstName
     {
         get => _firstName;
@@ -81,13 +93,28 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
         }
     }
 
+    private Dictionary<MonitorType, MonitorSetting> _monitorSettings = new()
+    {
+        { MonitorType.HeartRate, new MonitorSetting() },
+        { MonitorType.BloodPressure, new MonitorSetting() },
+        { MonitorType.RespiratoryRate, new MonitorSetting() },
+        { MonitorType.SpO2, new MonitorSetting() },
+        { MonitorType.PulseRate, new MonitorSetting() }
+    };
+
+    public Dictionary<MonitorType, MonitorSetting> MonitorSettings
+    {
+
+        get => _monitorSettings;
+        set => SetProperty(ref _monitorSettings, value);
+    }
     public string PrimaryCareGiver
     {
         get => _primaryCareGiver;
         set => SetProperty(ref _primaryCareGiver, value);
     }
 
-    public string RoomId
+    public string RoomName
     {
         get => _roomId;
         set => SetProperty(ref _roomId, value);
@@ -148,15 +175,15 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
         _monitoringService = monitoringService;
     }
 
-    public void Initialize(Patient patient)
+    public void Initialize(EpisodeOfCare episodeOfCare)
     {
-        PatientId = patient.Id;
-        FirstName = patient.FirstName;
-        LastName = patient.LastName;
-        DateOfBirth = patient.DateOfBirth;
-        PrimaryCareGiver = patient.PrimaryCareGiver;
-        RoomId = patient.RoomId;
-
+        PatientId = episodeOfCare.PatientId;
+        FirstName = episodeOfCare.Patient.FirstName;
+        LastName = episodeOfCare.Patient.LastName;
+        DateOfBirth = episodeOfCare.Patient.DateOfBirth;
+        PrimaryCareGiver = episodeOfCare.Patient.PrimaryCareGiver;
+        RoomName = episodeOfCare.Room.Name;
+        MonitorSettings = episodeOfCare.MonitorProfile.MonitorSettings;
         StartMonitoring();
     }
 

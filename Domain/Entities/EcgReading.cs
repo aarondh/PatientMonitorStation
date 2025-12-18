@@ -1,6 +1,6 @@
 namespace WPFTest.Domain.Entities;
 
-public class HeartRateReading
+public class EcgReading
 {
     public DateTime Timestamp { get; init; }
     public int Value { get; init; }
@@ -10,7 +10,7 @@ public class HeartRateReading
     public int LeadAVR { get; init; }
     public int LeadAVL { get; init; }
 
-    public HeartRateReading(DateTime timestamp, int value, int leadI, int leadII, int leadIII, int leadAVR, int leadAVL)
+    public EcgReading(DateTime timestamp, int value, int leadI, int leadII, int leadIII, int leadAVR, int leadAVL)
     {
         Timestamp = timestamp;
         Value = value;

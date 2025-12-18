@@ -5,7 +5,7 @@ namespace WPFTest.Application.Services;
 
 public class MonitoringService
 {
-    private readonly IHeartRateMonitor _heartRateMonitor;
+    private readonly IEcgMonitor _heartRateMonitor;
     private readonly IBloodPressureMonitor _bloodPressureMonitor;
     private readonly IRespiratoryMonitor _respiratoryMonitor;
     private readonly IPulseOximetryMonitor _pulseOximetryMonitor;
@@ -13,7 +13,7 @@ public class MonitoringService
     private readonly IPatientRepository _patientRepository;
 
     public MonitoringService(
-        IHeartRateMonitor heartRateMonitor,
+        IEcgMonitor heartRateMonitor,
         IBloodPressureMonitor bloodPressureMonitor,
         IRespiratoryMonitor respiratoryMonitor,
         IPulseOximetryMonitor pulseOximetryMonitor,
@@ -43,7 +43,27 @@ public class MonitoringService
         return await _patientRepository.GetPatientsByRoomIdAsync(roomId);
     }
 
-    public IObservable<HeartRateReading> MonitorHeartRate(string patientId)
+    public async Task<IEnumerable<EpisodeOfCare>> GetAllEpisodesOfCareAsync()
+    {
+        return await _patientRepository.GetAllEpisodesOfCareAsync();
+    }
+
+    public async Task<EpisodeOfCare?> GetEpisodeOfCareByRoomIdAsync(string roomId)
+    {
+        return await _patientRepository.GetEpisodeOfCareByRoomIdAsync(roomId);
+    }
+
+    public async Task<IEnumerable<MonitorProfile>> GetAllMonitorProfilesAsync()
+    {
+        return await _patientRepository.GetAllMonitorProfilesAsync();
+    }
+
+    public async Task<MonitorProfile?> GetMonitorProfileByIdAsync(string profileId)
+    {
+        return await _patientRepository.GetMonitorProfileByIdAsync(profileId);
+    }
+
+    public IObservable<EcgReading> MonitorHeartRate(string patientId)
     {
         _heartRateMonitor.StartMonitoring(patientId);
         return _heartRateMonitor.GetHeartRateStream(patientId);

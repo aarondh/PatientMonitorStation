@@ -2,9 +2,9 @@ using System.Windows.Controls;
 
 namespace WPFTest.Presentation.Controls;
 
-public partial class PatientVitalSignsControl : UserControl
+public partial class PatientMonitorsControl : UserControl
 {
-    public PatientVitalSignsControl()
+    public PatientMonitorsControl()
     {
         InitializeComponent();
     }

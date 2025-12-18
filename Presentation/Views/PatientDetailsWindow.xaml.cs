@@ -14,7 +14,7 @@ public partial class PatientDetailsWindow : Window
     {
         var viewModel = new PatientDetailsViewModel
         {
-            Patient = patient
+            PatientMonitor = patient
         };
         DataContext = viewModel;
     }

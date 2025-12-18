@@ -1,7 +1,7 @@
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using WPFTest.Domain.Ports;
-using WPFTest.Infrastructure.HeartRateMonitor;
+using WPFTest.Infrastructure.EcgMonitor;
 using WPFTest.Infrastructure.BloodPressureMonitor;
 using WPFTest.Infrastructure.RespiratoryMonitor;
 using WPFTest.Infrastructure.PulseOximetryMonitor;
@@ -38,7 +38,7 @@ public partial class App : System.Windows.Application
 
     private void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<IHeartRateMonitor, FakeHeartRateMonitor>();
+        services.AddSingleton<IEcgMonitor, FakeEcgMonitor>();
         services.AddSingleton<IBloodPressureMonitor, FakeBloodPressureMonitor>();
         services.AddSingleton<IRespiratoryMonitor, FakeRespiratoryMonitor>();
         services.AddSingleton<IPulseOximetryMonitor, FakePulseOximetryMonitor>();
@@ -63,7 +63,7 @@ public partial class App : System.Windows.Application
 
     protected override void OnExit(ExitEventArgs e)
     {
-        DisposeMonitor<IHeartRateMonitor>();
+        DisposeMonitor<IEcgMonitor>();
         DisposeMonitor<IBloodPressureMonitor>();
         DisposeMonitor<IRespiratoryMonitor>();
         DisposeMonitor<IPulseOximetryMonitor>();

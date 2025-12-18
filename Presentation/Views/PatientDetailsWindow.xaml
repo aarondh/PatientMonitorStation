@@ -468,371 +468,70 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Toggle Controls Section -->
+                <!-- Monitor Settings Section -->
                 <Border Background="#1a1a1a"
                         BorderBrush="#2ECC71"
                         BorderThickness="1"
                         CornerRadius="10"
                         Padding="15">
                     <StackPanel>
-                        <TextBlock Text="Vital Signs Display Settings"
+                        <TextBlock Text="Monitor Settings"
                                    FontSize="18"
                                    FontWeight="Bold"
                                    Foreground="#2ECC71"
                                    Margin="0,0,0,15"/>
 
-                        <StackPanel>
-                            <!-- Lead I Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="ECG Lead I" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding LeadISetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                        <UniformGrid Columns="3">
+                            <!-- Heart Rate Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="Heart Rate"
+                                Setting="{Binding PatientMonitor.MonitorSettings[HeartRate]}" />
 
-                            <!-- Lead II Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="ECG Lead II" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding LeadIISetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                            <!-- Lead I Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="ECG Lead I"
+                                Setting="{Binding PatientMonitor.MonitorSettings[LeadI]}" />
 
-                            <!-- Lead III Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="ECG Lead III" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding LeadIIISetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                            <!-- Lead II Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="ECG Lead II"
+                                Setting="{Binding PatientMonitor.MonitorSettings[LeadII]}" />
 
-                            <!-- Lead aVR Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="ECG Lead aVR" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding LeadAVRSetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                            <!-- Lead III Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="ECG Lead III"
+                                Setting="{Binding PatientMonitor.MonitorSettings[LeadIII]}" />
 
-                            <!-- Lead aVL Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="ECG Lead aVL" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding LeadAVLSetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                            <!-- Lead aVR Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="ECG Lead aVR"
+                                Setting="{Binding PatientMonitor.MonitorSettings[LeadAVR]}" />
 
-                            <!-- Blood Pressure Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="Blood Pressure" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding BloodPressureSetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                            <!-- Lead aVL Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="ECG Lead aVL"
+                                Setting="{Binding PatientMonitor.MonitorSettings[LeadAVL]}" />
 
-                            <!-- Respiratory Rate Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="Respiratory Rate" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding RespiratoryRateSetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                            <!-- Blood Pressure Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="Blood Pressure"
+                                Setting="{Binding PatientMonitor.MonitorSettings[BloodPressure]}" />
 
-                            <!-- SpO2 Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="SpO₂" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding SpO2Setting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
+                            <!-- Respiratory Rate Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="Respiratory Rate"
+                                Setting="{Binding PatientMonitor.MonitorSettings[RespiratoryRate]}" />
 
-                            <!-- Pulse Rate Settings -->
-                            <Border Background="#252525"
-                                    BorderBrush="#444"
-                                    BorderThickness="1"
-                                    CornerRadius="5"
-                                    Padding="10"
-                                    Margin="0,5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <TextBlock Grid.Column="0" 
-                                               Text="Pulse Rate" 
-                                               FontSize="14" 
-                                               Foreground="#fff"
-                                               VerticalAlignment="Center"/>
-                                    
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <ComboBox SelectedValue="{Binding PulseRateSetting.State}" 
-                                                  Width="120"
-                                                  Background="#1a1a1a"
-                                                  Foreground="#fff"
-                                                  BorderBrush="#555">
-                                            <ComboBox.ItemsSource>
-                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                    <system:String>None</system:String>
-                                                    <system:String>Vital</system:String>
-                                                    <system:String>Graph</system:String>
-                                                    <system:String>Both</system:String>
-                                                </x:Array>
-                                            </ComboBox.ItemsSource>
-                                        </ComboBox>
-                                    </StackPanel>
-                                </Grid>
-                            </Border>
-                        </StackPanel>
+                            <!-- SpO2 Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="SpO₂"
+                                Setting="{Binding PatientMonitor.MonitorSettings[SpO2]}" />
+
+                            <!-- Pulse Rate Monitor -->
+                            <controls:MonitorSettingEditor
+                                MonitorName="Pulse Rate"
+                                Setting="{Binding PatientMonitor.MonitorSettings[PulseRate]}" />
+                        </UniformGrid>
                     </StackPanel>
                 </Border>
             </StackPanel>
