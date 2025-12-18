@@ -35,9 +35,13 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <!-- Heart Rate -->
+                            <!-- ECG Lead I -->
                             <Border Grid.Row="0"
                                     Background="#252525"
                                     CornerRadius="5"
@@ -55,29 +59,240 @@
                                 </Border.Style>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Heart Rate"
-                                               FontSize="14"
-                                               Foreground="#888"
-                                               VerticalAlignment="Center"/>
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Patient.CurrentHeartRate}"
-                                                   FontSize="24"
-                                                   FontWeight="Bold"
-                                                   Foreground="#E74C3C"/>
-                                        <TextBlock Text=" bpm"
-                                                   FontSize="14"
-                                                   Foreground="#888"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="5,0,0,3"/>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <Grid>
+                                            <controls:MonitorGraph Data="{Binding Patient.LeadIData}" 
+                                                                 StrokeColor="#2ECC71" 
+                                                                 Height="60"/>
+                                            <TextBlock Text="Lead I" 
+                                                       FontSize="10" 
+                                                       Foreground="#2ECC71" 
+                                                       Margin="5" 
+                                                       VerticalAlignment="Top" 
+                                                       HorizontalAlignment="Left"/>
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#2ECC71"/>
+                                            <TextBlock Text=" bpm"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- ECG Lead II -->
+                            <Border Grid.Row="1"
+                                    Background="#252525"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,0,0,10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShowHeartRate}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <Grid>
+                                            <controls:MonitorGraph Data="{Binding Patient.LeadIIData}" 
+                                                                 StrokeColor="#2ECC71" 
+                                                                 Height="60"/>
+                                            <TextBlock Text="Lead II" 
+                                                       FontSize="10" 
+                                                       Foreground="#2ECC71" 
+                                                       Margin="5" 
+                                                       VerticalAlignment="Top" 
+                                                       HorizontalAlignment="Left"/>
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#2ECC71"/>
+                                            <TextBlock Text=" bpm"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- ECG Lead III -->
+                            <Border Grid.Row="2"
+                                    Background="#252525"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,0,0,10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShowHeartRate}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <Grid>
+                                            <controls:MonitorGraph Data="{Binding Patient.LeadIIIData}" 
+                                                                 StrokeColor="#2ECC71" 
+                                                                 Height="60"/>
+                                            <TextBlock Text="Lead III" 
+                                                       FontSize="10" 
+                                                       Foreground="#2ECC71" 
+                                                       Margin="5" 
+                                                       VerticalAlignment="Top" 
+                                                       HorizontalAlignment="Left"/>
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#2ECC71"/>
+                                            <TextBlock Text=" bpm"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- ECG Lead aVR -->
+                            <Border Grid.Row="3"
+                                    Background="#252525"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,0,0,10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShowHeartRate}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <Grid>
+                                            <controls:MonitorGraph Data="{Binding Patient.LeadAVRData}" 
+                                                                 StrokeColor="#2ECC71" 
+                                                                 Height="60"/>
+                                            <TextBlock Text="aVR" 
+                                                       FontSize="10" 
+                                                       Foreground="#2ECC71" 
+                                                       Margin="5" 
+                                                       VerticalAlignment="Top" 
+                                                       HorizontalAlignment="Left"/>
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#2ECC71"/>
+                                            <TextBlock Text=" bpm"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- ECG Lead aVL -->
+                            <Border Grid.Row="4"
+                                    Background="#252525"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,0,0,10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShowHeartRate}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <Grid>
+                                            <controls:MonitorGraph Data="{Binding Patient.LeadAVLData}" 
+                                                                 StrokeColor="#2ECC71" 
+                                                                 Height="60"/>
+                                            <TextBlock Text="aVL" 
+                                                       FontSize="10" 
+                                                       Foreground="#2ECC71" 
+                                                       Margin="5" 
+                                                       VerticalAlignment="Top" 
+                                                       HorizontalAlignment="Left"/>
+                                        </Grid>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#2ECC71"/>
+                                            <TextBlock Text=" bpm"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
                                     </StackPanel>
                                 </Grid>
                             </Border>
 
                             <!-- Blood Pressure -->
-                            <Border Grid.Row="1"
+                            <Border Grid.Row="5"
                                     Background="#252525"
                                     CornerRadius="5"
                                     Padding="10"
@@ -94,32 +309,36 @@
                                 </Border.Style>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Blood Pressure"
-                                               FontSize="14"
-                                               Foreground="#888"
-                                               VerticalAlignment="Center"/>
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <TextBlock FontSize="24"
-                                                   FontWeight="Bold"
-                                                   Foreground="#3498DB">
-                                            <Run Text="{Binding Patient.CurrentSystolic, Mode=OneWay}"/>
-                                            <Run Text="/"/>
-                                            <Run Text="{Binding Patient.CurrentDiastolic, Mode=OneWay}"/>
-                                        </TextBlock>
-                                        <TextBlock Text=" mmHg"
-                                                   FontSize="14"
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <TextBlock Text="No continuous waveform"
+                                                   FontSize="11"
+                                                   Foreground="#555"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#E74C3C">
+                                                <Run Text="{Binding Patient.CurrentSystolic, Mode=OneWay}"/>
+                                                <Run Text="/"/>
+                                                <Run Text="{Binding Patient.CurrentDiastolic, Mode=OneWay}"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Text="mmHg"
+                                                   FontSize="10"
                                                    Foreground="#888"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="5,0,0,3"/>
+                                                   TextAlignment="Center"/>
                                     </StackPanel>
                                 </Grid>
                             </Border>
 
                             <!-- Respiratory Rate -->
-                            <Border Grid.Row="2"
+                            <Border Grid.Row="6"
                                     Background="#252525"
                                     CornerRadius="5"
                                     Padding="10"
@@ -136,29 +355,32 @@
                                 </Border.Style>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Respiratory Rate"
-                                               FontSize="14"
-                                               Foreground="#888"
-                                               VerticalAlignment="Center"/>
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Patient.CurrentRespiratoryRate}"
-                                                   FontSize="24"
-                                                   FontWeight="Bold"
-                                                   Foreground="#F39C12"/>
-                                        <TextBlock Text=" /min"
-                                                   FontSize="14"
-                                                   Foreground="#888"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="5,0,0,3"/>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <controls:MonitorGraph Data="{Binding Patient.RespiratoryData}" 
+                                                             StrokeColor="#3498DB" 
+                                                             Height="60"/>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentRespiratoryRate}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#3498DB"/>
+                                            <TextBlock Text=" /min"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
                                     </StackPanel>
                                 </Grid>
                             </Border>
 
                             <!-- SpO2 -->
-                            <Border Grid.Row="3"
+                            <Border Grid.Row="7"
                                     Background="#252525"
                                     CornerRadius="5"
                                     Padding="10"
@@ -175,29 +397,34 @@
                                 </Border.Style>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="SpO2"
-                                               FontSize="14"
-                                               Foreground="#888"
-                                               VerticalAlignment="Center"/>
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Patient.CurrentSpO2}"
-                                                   FontSize="24"
-                                                   FontWeight="Bold"
-                                                   Foreground="#fff"/>
-                                        <TextBlock Text=" %"
-                                                   FontSize="14"
-                                                   Foreground="#888"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="5,0,0,3"/>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <TextBlock Text="No continuous waveform"
+                                                   FontSize="11"
+                                                   Foreground="#555"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentSpO2}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#fff"/>
+                                            <TextBlock Text=" %"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
                                     </StackPanel>
                                 </Grid>
                             </Border>
 
                             <!-- Pulse Rate -->
-                            <Border Grid.Row="4"
+                            <Border Grid.Row="8"
                                     Background="#252525"
                                     CornerRadius="5"
                                     Padding="10"
@@ -214,23 +441,26 @@
                                 </Border.Style>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="8*"/>
+                                        <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="Pulse Rate"
-                                               FontSize="14"
-                                               Foreground="#888"
-                                               VerticalAlignment="Center"/>
-                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Patient.CurrentPulseRate}"
-                                                   FontSize="24"
-                                                   FontWeight="Bold"
-                                                   Foreground="#1ABC9C"/>
-                                        <TextBlock Text=" bpm"
-                                                   FontSize="14"
-                                                   Foreground="#888"
-                                                   VerticalAlignment="Bottom"
-                                                   Margin="5,0,0,3"/>
+                                    <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
+                                        <controls:MonitorGraph Data="{Binding Patient.HeartRateData}" 
+                                                             StrokeColor="#1ABC9C" 
+                                                             Height="60"/>
+                                    </Border>
+                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding Patient.CurrentPulseRate}"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Foreground="#1ABC9C"/>
+                                            <TextBlock Text=" bpm"
+                                                       FontSize="10"
+                                                       Foreground="#888"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="2,0,0,2"/>
+                                        </StackPanel>
                                     </StackPanel>
                                 </Grid>
                             </Border>
@@ -252,253 +482,356 @@
                                    Margin="0,0,0,15"/>
 
                         <StackPanel>
-                            <!-- Heart Rate Toggle -->
-                            <ToggleButton Content="Heart Rate"
-                                          IsChecked="{Binding ShowHeartRate}"
-                                          Cursor="Hand"
-                                          Margin="0,5">
-                                <ToggleButton.Style>
-                                    <Style TargetType="ToggleButton">
-                                        <Setter Property="Background" Value="#252525"/>
-                                        <Setter Property="Foreground" Value="#fff"/>
-                                        <Setter Property="BorderBrush" Value="#444"/>
-                                        <Setter Property="BorderThickness" Value="1"/>
-                                        <Setter Property="Padding" Value="15,10"/>
-                                        <Setter Property="FontSize" Value="14"/>
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ToggleButton">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            CornerRadius="5"
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <!-- Unchecked (Pushed In) State -->
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Background" Value="#0d0d0d"/>
-                                                <Setter Property="BorderBrush" Value="#E74C3C"/>
-                                                <Setter Property="BorderThickness" Value="3"/>
-                                                <Setter Property="Padding" Value="13,8"/>
-                                            </Trigger>
-                                            <!-- Checked (Popped Out) State -->
-                                            <Trigger Property="IsChecked" Value="True">
-                                                <Setter Property="Background" Value="#252525"/>
-                                                <Setter Property="BorderBrush" Value="#2ECC71"/>
-                                                <Setter Property="BorderThickness" Value="1"/>
-                                                <Setter Property="Padding" Value="15,10"/>
-                                            </Trigger>
-                                            <!-- Hover State -->
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#333"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ToggleButton.Style>
-                            </ToggleButton>
+                            <!-- Lead I Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="ECG Lead I" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding LeadISetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
 
-                            <!-- Blood Pressure Toggle -->
-                            <ToggleButton Content="Blood Pressure"
-                                          IsChecked="{Binding ShowBloodPressure}"
-                                          Cursor="Hand"
-                                          Margin="0,5">
-                                <ToggleButton.Style>
-                                    <Style TargetType="ToggleButton">
-                                        <Setter Property="Background" Value="#252525"/>
-                                        <Setter Property="Foreground" Value="#fff"/>
-                                        <Setter Property="BorderBrush" Value="#444"/>
-                                        <Setter Property="BorderThickness" Value="1"/>
-                                        <Setter Property="Padding" Value="15,10"/>
-                                        <Setter Property="FontSize" Value="14"/>
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ToggleButton">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            CornerRadius="5"
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Background" Value="#0d0d0d"/>
-                                                <Setter Property="BorderBrush" Value="#3498DB"/>
-                                                <Setter Property="BorderThickness" Value="3"/>
-                                                <Setter Property="Padding" Value="13,8"/>
-                                            </Trigger>
-                                            <Trigger Property="IsChecked" Value="True">
-                                                <Setter Property="Background" Value="#252525"/>
-                                                <Setter Property="BorderBrush" Value="#2ECC71"/>
-                                                <Setter Property="BorderThickness" Value="1"/>
-                                                <Setter Property="Padding" Value="15,10"/>
-                                            </Trigger>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#333"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ToggleButton.Style>
-                            </ToggleButton>
+                            <!-- Lead II Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="ECG Lead II" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding LeadIISetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
 
-                            <!-- Respiratory Rate Toggle -->
-                            <ToggleButton Content="Respiratory Rate"
-                                          IsChecked="{Binding ShowRespiratoryRate}"
-                                          Cursor="Hand"
-                                          Margin="0,5">
-                                <ToggleButton.Style>
-                                    <Style TargetType="ToggleButton">
-                                        <Setter Property="Background" Value="#252525"/>
-                                        <Setter Property="Foreground" Value="#fff"/>
-                                        <Setter Property="BorderBrush" Value="#444"/>
-                                        <Setter Property="BorderThickness" Value="1"/>
-                                        <Setter Property="Padding" Value="15,10"/>
-                                        <Setter Property="FontSize" Value="14"/>
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ToggleButton">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            CornerRadius="5"
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Background" Value="#0d0d0d"/>
-                                                <Setter Property="BorderBrush" Value="#F39C12"/>
-                                                <Setter Property="BorderThickness" Value="3"/>
-                                                <Setter Property="Padding" Value="13,8"/>
-                                            </Trigger>
-                                            <Trigger Property="IsChecked" Value="True">
-                                                <Setter Property="Background" Value="#252525"/>
-                                                <Setter Property="BorderBrush" Value="#2ECC71"/>
-                                                <Setter Property="BorderThickness" Value="1"/>
-                                                <Setter Property="Padding" Value="15,10"/>
-                                            </Trigger>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#333"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ToggleButton.Style>
-                            </ToggleButton>
+                            <!-- Lead III Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="ECG Lead III" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding LeadIIISetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
 
-                            <!-- SpO2 Toggle -->
-                            <ToggleButton Content="SpO2"
-                                          IsChecked="{Binding ShowSpO2}"
-                                          Cursor="Hand"
-                                          Margin="0,5">
-                                <ToggleButton.Style>
-                                    <Style TargetType="ToggleButton">
-                                        <Setter Property="Background" Value="#252525"/>
-                                        <Setter Property="Foreground" Value="#fff"/>
-                                        <Setter Property="BorderBrush" Value="#444"/>
-                                        <Setter Property="BorderThickness" Value="1"/>
-                                        <Setter Property="Padding" Value="15,10"/>
-                                        <Setter Property="FontSize" Value="14"/>
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ToggleButton">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            CornerRadius="5"
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Background" Value="#0d0d0d"/>
-                                                <Setter Property="BorderBrush" Value="#9B59B6"/>
-                                                <Setter Property="BorderThickness" Value="3"/>
-                                                <Setter Property="Padding" Value="13,8"/>
-                                            </Trigger>
-                                            <Trigger Property="IsChecked" Value="True">
-                                                <Setter Property="Background" Value="#252525"/>
-                                                <Setter Property="BorderBrush" Value="#2ECC71"/>
-                                                <Setter Property="BorderThickness" Value="1"/>
-                                                <Setter Property="Padding" Value="15,10"/>
-                                            </Trigger>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#333"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ToggleButton.Style>
-                            </ToggleButton>
+                            <!-- Lead aVR Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="ECG Lead aVR" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding LeadAVRSetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
 
-                            <!-- Pulse Rate Toggle -->
-                            <ToggleButton Content="Pulse Rate"
-                                          IsChecked="{Binding ShowPulseRate}"
-                                          Cursor="Hand"
-                                          Margin="0,5">
-                                <ToggleButton.Style>
-                                    <Style TargetType="ToggleButton">
-                                        <Setter Property="Background" Value="#252525"/>
-                                        <Setter Property="Foreground" Value="#fff"/>
-                                        <Setter Property="BorderBrush" Value="#444"/>
-                                        <Setter Property="BorderThickness" Value="1"/>
-                                        <Setter Property="Padding" Value="15,10"/>
-                                        <Setter Property="FontSize" Value="14"/>
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="ToggleButton">
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                                            CornerRadius="5"
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                                          VerticalAlignment="Center"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Style.Triggers>
-                                            <Trigger Property="IsChecked" Value="False">
-                                                <Setter Property="Background" Value="#0d0d0d"/>
-                                                <Setter Property="BorderBrush" Value="#1ABC9C"/>
-                                                <Setter Property="BorderThickness" Value="3"/>
-                                                <Setter Property="Padding" Value="13,8"/>
-                                            </Trigger>
-                                            <Trigger Property="IsChecked" Value="True">
-                                                <Setter Property="Background" Value="#252525"/>
-                                                <Setter Property="BorderBrush" Value="#2ECC71"/>
-                                                <Setter Property="BorderThickness" Value="1"/>
-                                                <Setter Property="Padding" Value="15,10"/>
-                                            </Trigger>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#333"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </ToggleButton.Style>
-                            </ToggleButton>
+                            <!-- Lead aVL Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="ECG Lead aVL" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding LeadAVLSetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Blood Pressure Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="Blood Pressure" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding BloodPressureSetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Respiratory Rate Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="Respiratory Rate" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding RespiratoryRateSetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- SpO2 Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="SpO₂" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding SpO2Setting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+
+                            <!-- Pulse Rate Settings -->
+                            <Border Background="#252525"
+                                    BorderBrush="#444"
+                                    BorderThickness="1"
+                                    CornerRadius="5"
+                                    Padding="10"
+                                    Margin="0,5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Grid.Column="0" 
+                                               Text="Pulse Rate" 
+                                               FontSize="14" 
+                                               Foreground="#fff"
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <TextBlock Text="State: " FontSize="12" Foreground="#888" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ComboBox SelectedValue="{Binding PulseRateSetting.State}" 
+                                                  Width="120"
+                                                  Background="#1a1a1a"
+                                                  Foreground="#fff"
+                                                  BorderBrush="#555">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="system:String" xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    <system:String>None</system:String>
+                                                    <system:String>Vital</system:String>
+                                                    <system:String>Graph</system:String>
+                                                    <system:String>Both</system:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
                         </StackPanel>
                     </StackPanel>
                 </Border>

@@ -101,6 +101,10 @@
                                                     Command="{Binding DataContext.SelectPatientCommand, 
                                                              RelativeSource={RelativeSource AncestorType=Window}}"
                                                     CommandParameter="{Binding}"/>
+                                        <MouseBinding MouseAction="LeftDoubleClick" 
+                                                    Command="{Binding DataContext.SelectPatientDetailCommand, 
+                                                             RelativeSource={RelativeSource AncestorType=Window}}"
+                                                    CommandParameter="{Binding}"/>
                                     </Border.InputBindings>
                                     
                                     <StackPanel>
