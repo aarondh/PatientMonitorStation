@@ -1,3 +1,4 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using WPFTest.Domain.Entities;
@@ -31,6 +32,8 @@ public partial class MonitorSettingEditor : UserControl
         get => (MonitorSetting)GetValue(SettingProperty);
         set => SetValue(SettingProperty, value);
     }
+
+    public Array ViewStates => Enum.GetValues(typeof(MonitorViewState));
 
     public MonitorSettingEditor()
     {

@@ -17,7 +17,7 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
     private string _lastName = string.Empty;
     private DateTime _dateOfBirth;
     private string _primaryCareGiver = string.Empty;
-    private string _roomId = string.Empty;
+    private string _roomName = string.Empty;
     private int _currentHeartRate;
     private int _currentSystolic;
     private int _currentDiastolic;
@@ -44,6 +44,18 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
             }
         }
     }
+    public string RoomName
+    {
+        get => _roomName;
+        set
+        {
+            if (SetProperty(ref _roomName, value))
+            {
+                OnPropertyChanged(nameof(FullName));
+            }
+        }
+    }
+
     public string FirstName
     {
         get => _firstName;
@@ -114,12 +126,6 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
         set => SetProperty(ref _primaryCareGiver, value);
     }
 
-    public string RoomName
-    {
-        get => _roomId;
-        set => SetProperty(ref _roomId, value);
-    }
-
     public int CurrentHeartRate
     {
         get => _currentHeartRate;
@@ -183,7 +189,7 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
         DateOfBirth = episodeOfCare.Patient.DateOfBirth;
         PrimaryCareGiver = episodeOfCare.Patient.PrimaryCareGiver;
         RoomName = episodeOfCare.Room.Name;
-        MonitorSettings = episodeOfCare.MonitorProfile.MonitorSettings;
+        MonitorSettings = episodeOfCare.MonitorSettings;
         StartMonitoring();
     }
 

@@ -156,23 +156,15 @@ public class MainViewModel : ViewModelBase
         // Recreate the window if it's closed
         _detailsWindow.Closed += (s, e) =>
         {
-            _detailsViewModel = new PatientDetailsViewModel();
-            _detailsWindow = new PatientDetailsWindow
-            {
-                DataContext = _detailsViewModel
-            };
-
-            if (System.Windows.Application.Current.MainWindow != null)
-            {
-                _detailsWindow.Owner = System.Windows.Application.Current.MainWindow;
-            }
-
-            if (PatientDoubleClicked != null)
-            {
-                _detailsViewModel.PatientMonitor = PatientDoubleClicked;
-            }
-            _detailsWindow.Show();
+            _detailsWindow = null;
+            _detailsViewModel = null;
         };
+
+        // Set the patient data BEFORE showing the window
+        if (PatientDoubleClicked != null)
+        {
+            _detailsViewModel.PatientMonitor = PatientDoubleClicked;
+        }
 
         // Show the window
         _detailsWindow.Show();
@@ -180,15 +172,30 @@ public class MainViewModel : ViewModelBase
 
     private void UpdateDetailsWindow()
     {
+        if (PatientDoubleClicked == null) return;
+
         // Create window on first use if it doesn't exist
-        if (_detailsWindow == null && PatientDoubleClicked != null)
+        if (_detailsWindow == null)
         {
             InitializeDetailsWindow();
         }
-
-        if (_detailsViewModel != null && PatientDoubleClicked != null)
+        else
         {
-            _detailsViewModel.PatientMonitor = PatientDoubleClicked;
+            // Update the patient in the existing window
+            if (_detailsViewModel != null)
+            {
+                _detailsViewModel.PatientMonitor = PatientDoubleClicked;
+            }
+
+            // Show the window if it's hidden or bring it to front
+            if (!_detailsWindow.IsVisible)
+            {
+                _detailsWindow.Show();
+            }
+            else
+            {
+                _detailsWindow.Activate();
+            }
         }
     }
 

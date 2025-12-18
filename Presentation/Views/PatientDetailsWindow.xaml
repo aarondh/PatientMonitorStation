@@ -11,7 +11,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <StackPanel>
                 <!-- Patient Information Section -->
-                <controls:PatientInformationControl DataContext="{Binding Patient}" 
+                <controls:PatientInformationControl DataContext="{Binding PatientMonitor}"
                                                     Margin="0,0,0,10"/>
 
                 <!-- Vital Signs Section -->
@@ -64,10 +64,10 @@
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
                                         <Grid>
-                                            <controls:MonitorGraph Data="{Binding Patient.LeadIData}" 
+                                            <controls:MonitorGraph Data="{Binding PatientMonitor.LeadIData}" 
                                                                  StrokeColor="#2ECC71" 
                                                                  Height="60"/>
-                                            <TextBlock Text="Lead I" 
+                                            <TextBlock Text="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadI].GraphLabel, FallbackValue='Lead I'}" 
                                                        FontSize="10" 
                                                        Foreground="#2ECC71" 
                                                        Margin="5" 
@@ -77,7 +77,7 @@
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentHeartRate}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#2ECC71"/>
@@ -114,7 +114,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
                                         <Grid>
-                                            <controls:MonitorGraph Data="{Binding Patient.LeadIIData}" 
+                                            <controls:MonitorGraph Data="{Binding PatientMonitor.LeadIIData}" 
                                                                  StrokeColor="#2ECC71" 
                                                                  Height="60"/>
                                             <TextBlock Text="Lead II" 
@@ -127,7 +127,7 @@
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentHeartRate}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#2ECC71"/>
@@ -164,7 +164,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
                                         <Grid>
-                                            <controls:MonitorGraph Data="{Binding Patient.LeadIIIData}" 
+                                            <controls:MonitorGraph Data="{Binding PatientMonitor.LeadIIIData}" 
                                                                  StrokeColor="#2ECC71" 
                                                                  Height="60"/>
                                             <TextBlock Text="Lead III" 
@@ -177,7 +177,7 @@
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentHeartRate}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#2ECC71"/>
@@ -214,7 +214,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
                                         <Grid>
-                                            <controls:MonitorGraph Data="{Binding Patient.LeadAVRData}" 
+                                            <controls:MonitorGraph Data="{Binding PatientMonitor.LeadAVRData}" 
                                                                  StrokeColor="#2ECC71" 
                                                                  Height="60"/>
                                             <TextBlock Text="aVR" 
@@ -227,7 +227,7 @@
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentHeartRate}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#2ECC71"/>
@@ -264,7 +264,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
                                         <Grid>
-                                            <controls:MonitorGraph Data="{Binding Patient.LeadAVLData}" 
+                                            <controls:MonitorGraph Data="{Binding PatientMonitor.LeadAVLData}" 
                                                                  StrokeColor="#2ECC71" 
                                                                  Height="60"/>
                                             <TextBlock Text="aVL" 
@@ -277,7 +277,7 @@
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentHeartRate}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentHeartRate}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#2ECC71"/>
@@ -324,9 +324,9 @@
                                             <TextBlock FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#E74C3C">
-                                                <Run Text="{Binding Patient.CurrentSystolic, Mode=OneWay}"/>
+                                                <Run Text="{Binding PatientMonitor.CurrentSystolic, Mode=OneWay}"/>
                                                 <Run Text="/"/>
-                                                <Run Text="{Binding Patient.CurrentDiastolic, Mode=OneWay}"/>
+                                                <Run Text="{Binding PatientMonitor.CurrentDiastolic, Mode=OneWay}"/>
                                             </TextBlock>
                                         </StackPanel>
                                         <TextBlock Text="mmHg"
@@ -359,13 +359,13 @@
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
-                                        <controls:MonitorGraph Data="{Binding Patient.RespiratoryData}" 
+                                        <controls:MonitorGraph Data="{Binding PatientMonitor.RespiratoryData}" 
                                                              StrokeColor="#3498DB" 
                                                              Height="60"/>
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentRespiratoryRate}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentRespiratoryRate}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#3498DB"/>
@@ -409,7 +409,7 @@
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentSpO2}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentSpO2}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#fff"/>
@@ -445,13 +445,13 @@
                                         <ColumnDefinition Width="2*"/>
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0" Background="#0d0d0d" CornerRadius="3" Margin="0,0,5,0">
-                                        <controls:MonitorGraph Data="{Binding Patient.HeartRateData}" 
+                                        <controls:MonitorGraph Data="{Binding PatientMonitor.HeartRateData}" 
                                                              StrokeColor="#1ABC9C" 
                                                              Height="60"/>
                                     </Border>
                                     <StackPanel Grid.Column="1" VerticalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Patient.CurrentPulseRate}"
+                                            <TextBlock Text="{Binding PatientMonitor.CurrentPulseRate}"
                                                        FontSize="20"
                                                        FontWeight="Bold"
                                                        Foreground="#1ABC9C"/>
@@ -485,52 +485,52 @@
                             <!-- Heart Rate Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="Heart Rate"
-                                Setting="{Binding PatientMonitor.MonitorSettings[HeartRate]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.HeartRate]}" />
 
                             <!-- Lead I Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="ECG Lead I"
-                                Setting="{Binding PatientMonitor.MonitorSettings[LeadI]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadI]}" />
 
                             <!-- Lead II Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="ECG Lead II"
-                                Setting="{Binding PatientMonitor.MonitorSettings[LeadII]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadII]}" />
 
                             <!-- Lead III Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="ECG Lead III"
-                                Setting="{Binding PatientMonitor.MonitorSettings[LeadIII]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadIII]}" />
 
                             <!-- Lead aVR Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="ECG Lead aVR"
-                                Setting="{Binding PatientMonitor.MonitorSettings[LeadAVR]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadAVR]}" />
 
                             <!-- Lead aVL Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="ECG Lead aVL"
-                                Setting="{Binding PatientMonitor.MonitorSettings[LeadAVL]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadAVL]}" />
 
                             <!-- Blood Pressure Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="Blood Pressure"
-                                Setting="{Binding PatientMonitor.MonitorSettings[BloodPressure]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.BloodPressure]}" />
 
                             <!-- Respiratory Rate Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="Respiratory Rate"
-                                Setting="{Binding PatientMonitor.MonitorSettings[RespiratoryRate]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.RespiratoryRate]}" />
 
                             <!-- SpO2 Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="SpO₂"
-                                Setting="{Binding PatientMonitor.MonitorSettings[SpO2]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.SpO2]}" />
 
                             <!-- Pulse Rate Monitor -->
                             <controls:MonitorSettingEditor
                                 MonitorName="Pulse Rate"
-                                Setting="{Binding PatientMonitor.MonitorSettings[PulseRate]}" />
+                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.PulseRate]}" />
                         </UniformGrid>
                     </StackPanel>
                 </Border>

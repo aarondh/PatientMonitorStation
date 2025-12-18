@@ -28,7 +28,10 @@ public class PatientDetailsViewModel : ViewModelBase
     {
         if (PatientMonitor != null)
         {
-            return PatientMonitor.MonitorSettings[type].State;
+            if(PatientMonitor.MonitorSettings.TryGetValue(type, out var setting))
+            {
+                return setting.State;
+            }
         }
         return MonitorViewState.None;
     }

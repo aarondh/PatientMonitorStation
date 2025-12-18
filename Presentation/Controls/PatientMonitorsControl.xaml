@@ -40,116 +40,116 @@
                 <!-- Monitor Graphs Column - All ECG Leads -->
                 <StackPanel Grid.Row="1">
                     <!-- Lead I -->
-                    <Border Background="#1a1a1a" 
-                            BorderBrush="#2ECC71" 
-                            BorderThickness="1" 
-                            CornerRadius="3" 
+                    <Border Background="{Binding MonitorSettings[LeadI].FillColor}"
+                            BorderBrush="{Binding MonitorSettings[LeadI].BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="3"
                             Margin="2"
                             Height="28">
                         <Grid>
-                            <TextBlock Text="Lead I" 
-                                      FontSize="7" 
-                                      Foreground="#888" 
+                            <TextBlock Text="{Binding MonitorSettings[LeadI].GraphLabel}"
+                                      FontSize="7"
+                                      Foreground="#888"
                                       Margin="3,2,0,0"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Left"/>
                             <controls:MonitorGraph Data="{Binding LeadIData}"
-                                                  StrokeColor="#2ECC71"/>
+                                                  StrokeColor="{Binding MonitorSettings[LeadI].StrokeColor}"/>
                         </Grid>
                     </Border>
-                    
+
                     <!-- Lead II -->
-                    <Border Background="#1a1a1a" 
-                            BorderBrush="#2ECC71" 
-                            BorderThickness="1" 
-                            CornerRadius="3" 
+                    <Border Background="{Binding MonitorSettings[LeadII].FillColor}"
+                            BorderBrush="{Binding MonitorSettings[LeadII].BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="3"
                             Margin="2"
                             Height="28">
                         <Grid>
-                            <TextBlock Text="Lead II" 
-                                      FontSize="7" 
-                                      Foreground="#888" 
+                            <TextBlock Text="{Binding MonitorSettings[LeadII].GraphLabel}"
+                                      FontSize="7"
+                                      Foreground="#888"
                                       Margin="3,2,0,0"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Left"/>
                             <controls:MonitorGraph Data="{Binding LeadIIData}"
-                                                  StrokeColor="#2ECC71"/>
+                                                  StrokeColor="{Binding MonitorSettings[LeadII].StrokeColor}"/>
                         </Grid>
                     </Border>
-                    
+
                     <!-- Lead III -->
-                    <Border Background="#1a1a1a" 
-                            BorderBrush="#2ECC71" 
-                            BorderThickness="1" 
-                            CornerRadius="3" 
+                    <Border Background="{Binding MonitorSettings[LeadIII].FillColor}"
+                            BorderBrush="{Binding MonitorSettings[LeadIII].BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="3"
                             Margin="2"
                             Height="28">
                         <Grid>
-                            <TextBlock Text="Lead III" 
-                                      FontSize="7" 
-                                      Foreground="#888" 
+                            <TextBlock Text="{Binding MonitorSettings[LeadIII].GraphLabel}"
+                                      FontSize="7"
+                                      Foreground="#888"
                                       Margin="3,2,0,0"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Left"/>
                             <controls:MonitorGraph Data="{Binding LeadIIIData}"
-                                                  StrokeColor="#2ECC71"/>
+                                                  StrokeColor="{Binding MonitorSettings[LeadIII].StrokeColor}"/>
                         </Grid>
                     </Border>
-                    
+
                     <!-- Lead AVR -->
-                    <Border Background="#1a1a1a" 
-                            BorderBrush="#2ECC71" 
-                            BorderThickness="1" 
-                            CornerRadius="3" 
+                    <Border Background="{Binding MonitorSettings[LeadAVR].FillColor}"
+                            BorderBrush="{Binding MonitorSettings[LeadAVR].BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="3"
                             Margin="2"
                             Height="28">
                         <Grid>
-                            <TextBlock Text="aVR" 
-                                      FontSize="7" 
-                                      Foreground="#888" 
+                            <TextBlock Text="{Binding MonitorSettings[LeadAVR].GraphLabel}"
+                                      FontSize="7"
+                                      Foreground="#888"
                                       Margin="3,2,0,0"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Left"/>
                             <controls:MonitorGraph Data="{Binding LeadAVRData}"
-                                                  StrokeColor="#2ECC71"/>
+                                                  StrokeColor="{Binding MonitorSettings[LeadAVR].StrokeColor}"/>
                         </Grid>
                     </Border>
-                    
+
                     <!-- Lead AVL -->
-                    <Border Background="#1a1a1a" 
-                            BorderBrush="#2ECC71" 
-                            BorderThickness="1" 
-                            CornerRadius="3" 
+                    <Border Background="{Binding MonitorSettings[LeadAVL].FillColor}"
+                            BorderBrush="{Binding MonitorSettings[LeadAVL].BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="3"
                             Margin="2"
                             Height="28">
                         <Grid>
-                            <TextBlock Text="aVL" 
-                                      FontSize="7" 
-                                      Foreground="#888" 
+                            <TextBlock Text="{Binding MonitorSettings[LeadAVL].GraphLabel}"
+                                      FontSize="7"
+                                      Foreground="#888"
                                       Margin="3,2,0,0"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Left"/>
                             <controls:MonitorGraph Data="{Binding LeadAVLData}"
-                                                  StrokeColor="#2ECC71"/>
+                                                  StrokeColor="{Binding MonitorSettings[LeadAVL].StrokeColor}"/>
                         </Grid>
                     </Border>
-                    
+
                     <!-- Respiratory -->
-                    <Border Background="#1a1a1a" 
-                            BorderBrush="#3498DB" 
-                            BorderThickness="1" 
-                            CornerRadius="3" 
+                    <Border Background="{Binding MonitorSettings[RespiratoryRate].FillColor}"
+                            BorderBrush="{Binding MonitorSettings[RespiratoryRate].BorderColor}"
+                            BorderThickness="1"
+                            CornerRadius="3"
                             Margin="2"
                             Height="28">
                         <Grid>
-                            <TextBlock Text="RESP" 
-                                      FontSize="7" 
-                                      Foreground="#888" 
+                            <TextBlock Text="{Binding MonitorSettings[RespiratoryRate].GraphLabel}"
+                                      FontSize="7"
+                                      Foreground="#888"
                                       Margin="3,2,0,0"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Left"/>
                             <controls:MonitorGraph Data="{Binding RespiratoryData}"
-                                                  StrokeColor="#3498DB"/>
+                                                  StrokeColor="{Binding MonitorSettings[RespiratoryRate].StrokeColor}"/>
                         </Grid>
                     </Border>
                 </StackPanel>
@@ -159,79 +159,79 @@
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                 <!-- Heart Rate -->
                 <StackPanel HorizontalAlignment="Center" Margin="0,5">
-                    <TextBlock Text="HR" 
-                               FontSize="8" 
+                    <TextBlock Text="{Binding MonitorSettings[HeartRate].GraphLabel}"
+                               FontSize="8"
                                Foreground="#888"
                                HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding CurrentHeartRate}" 
-                                  FontSize="18" 
-                                  FontWeight="Bold" 
-                                  Foreground="#2ECC71"/>
-                        <TextBlock Text=" bpm" 
-                                  FontSize="7" 
-                                  Foreground="#888" 
-                                  VerticalAlignment="Bottom" 
+                        <TextBlock Text="{Binding CurrentHeartRate}"
+                                  FontSize="18"
+                                  FontWeight="Bold"
+                                  Foreground="{Binding MonitorSettings[HeartRate].StrokeColor}"/>
+                        <TextBlock Text="{Binding MonitorSettings[HeartRate].Unit, StringFormat=' {0}'}"
+                                  FontSize="7"
+                                  Foreground="#888"
+                                  VerticalAlignment="Bottom"
                                   Margin="2,0,0,2"/>
                     </StackPanel>
                 </StackPanel>
-                
+
                 <!-- Blood Pressure -->
                 <StackPanel HorizontalAlignment="Center" Margin="0,5">
-                    <TextBlock Text="BP" 
-                               FontSize="8" 
+                    <TextBlock Text="{Binding MonitorSettings[BloodPressure].GraphLabel}"
+                               FontSize="8"
                                Foreground="#888"
                                HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding CurrentSystolic}" 
-                                  FontSize="16" 
-                                  FontWeight="Bold" 
-                                  Foreground="#E74C3C"/>
-                        <TextBlock Text="/" 
-                                  FontSize="16" 
-                                  Foreground="#888" 
+                        <TextBlock Text="{Binding CurrentSystolic}"
+                                  FontSize="16"
+                                  FontWeight="Bold"
+                                  Foreground="{Binding MonitorSettings[BloodPressure].StrokeColor}"/>
+                        <TextBlock Text="/"
+                                  FontSize="16"
+                                  Foreground="#888"
                                   Margin="1,0"/>
-                        <TextBlock Text="{Binding CurrentDiastolic}" 
-                                  FontSize="16" 
-                                  FontWeight="Bold" 
-                                  Foreground="#E74C3C"/>
+                        <TextBlock Text="{Binding CurrentDiastolic}"
+                                  FontSize="16"
+                                  FontWeight="Bold"
+                                  Foreground="{Binding MonitorSettings[BloodPressure].StrokeColor}"/>
                     </StackPanel>
                 </StackPanel>
-                
+
                 <!-- Respiratory Rate -->
                 <StackPanel HorizontalAlignment="Center" Margin="0,5">
-                    <TextBlock Text="RESP" 
-                               FontSize="8" 
+                    <TextBlock Text="{Binding MonitorSettings[RespiratoryRate].GraphLabel}"
+                               FontSize="8"
                                Foreground="#888"
                                HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding CurrentRespiratoryRate}" 
-                                  FontSize="16" 
-                                  FontWeight="Bold" 
-                                  Foreground="#3498DB"/>
-                        <TextBlock Text="/min" 
-                                  FontSize="7" 
-                                  Foreground="#888" 
-                                  VerticalAlignment="Bottom" 
+                        <TextBlock Text="{Binding CurrentRespiratoryRate}"
+                                  FontSize="16"
+                                  FontWeight="Bold"
+                                  Foreground="{Binding MonitorSettings[RespiratoryRate].StrokeColor}"/>
+                        <TextBlock Text="{Binding MonitorSettings[RespiratoryRate].Unit, StringFormat=' {0}'}"
+                                  FontSize="7"
+                                  Foreground="#888"
+                                  VerticalAlignment="Bottom"
                                   Margin="2,0,0,2"/>
                     </StackPanel>
                 </StackPanel>
-                
+
                 <!-- SpO2 -->
                 <StackPanel HorizontalAlignment="Center" Margin="0,5">
-                    <TextBlock Text="SpO2" 
-                               FontSize="8" 
+                    <TextBlock Text="{Binding MonitorSettings[SpO2].GraphLabel}"
+                               FontSize="8"
                                Foreground="#888"
                                HorizontalAlignment="Center"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding CurrentSpO2}" 
-                                  FontSize="16" 
-                                  FontWeight="Bold" 
-                                  Foreground="#fff"/>
-                        <TextBlock Text="%" 
-                                  FontSize="7" 
-                                  Foreground="#888" 
-                                  VerticalAlignment="Bottom" 
+                        <TextBlock Text="{Binding CurrentSpO2}"
+                                  FontSize="16"
+                                  FontWeight="Bold"
+                                  Foreground="{Binding MonitorSettings[SpO2].StrokeColor}"/>
+                        <TextBlock Text="{Binding MonitorSettings[SpO2].Unit, StringFormat=' {0}'}"
+                                  FontSize="7"
+                                  Foreground="#888"
+                                  VerticalAlignment="Bottom"
                                   Margin="2,0,0,2"/>
                     </StackPanel>
                 </StackPanel>

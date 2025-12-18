@@ -71,7 +71,7 @@
                                FontSize="12"
                                Foreground="#888"
                                Margin="0,0,0,5"/>
-                    <TextBlock Text="{Binding RoomId}"
+                    <TextBlock Text="{Binding RoomName}"
                                FontSize="16"
                                Foreground="#fff"/>
                 </StackPanel>

@@ -34,20 +34,12 @@
                            VerticalAlignment="Center"/>
 
                 <ComboBox Grid.Column="1"
-                          SelectedValue="{Binding Setting.State, Mode=TwoWay}"
+                          ItemsSource="{Binding ViewStates}"
+                          SelectedItem="{Binding Setting.State, Mode=TwoWay}"
                           Background="#1a1a1a"
                           Foreground="#000"
                           BorderBrush="#555"
-                          HorizontalAlignment="Stretch">
-                    <ComboBox.ItemsSource>
-                        <x:Array Type="{x:Type system:String}">
-                            <system:String>None</system:String>
-                            <system:String>Vital</system:String>
-                            <system:String>Graph</system:String>
-                            <system:String>Both</system:String>
-                        </x:Array>
-                    </ComboBox.ItemsSource>
-                </ComboBox>
+                          HorizontalAlignment="Stretch"/>
             </Grid>
 
             <!-- Stroke Color -->

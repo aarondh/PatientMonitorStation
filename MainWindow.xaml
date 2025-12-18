@@ -115,7 +115,7 @@
                                                    TextTrimming="CharacterEllipsis"/>
                                         <TextBlock FontSize="9" Foreground="#888" Margin="0,2,0,0">
                                             <Run Text="Room "/>
-                                            <Run Text="{Binding RoomId}"/>
+                                            <Run Text="{Binding RoomName}"/>
                                         </TextBlock>
                                         
                                         <Grid Margin="0,5,0,0">

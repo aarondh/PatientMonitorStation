@@ -11,6 +11,7 @@ public class EpisodeOfCare
 
     public string MonitorProfileId { get; set; } = string.Empty;
     public MonitorProfile MonitorProfile { get; set; } = new MonitorProfile();
+    public Dictionary<MonitorType, MonitorSetting> MonitorSettings { get; set; } = new Dictionary<MonitorType, MonitorSetting>();
 
     public EpisodeOfCare()
     {

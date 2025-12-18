@@ -28,18 +28,21 @@ public class InMemoryPatientRepository : IPatientRepository
     {
         new MonitorProfile
         {
-            Id = "profile-icu",
-            ProfileName = "ICU Standard",
+            Id = "profile-default",
+            ProfileName = "Default",
             MonitorSettings = new Dictionary<MonitorType, MonitorSetting>
             {
                 [MonitorType.HeartRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    GraphLabel = "HR",
+                    Unit = "bpm",
                     StrokeColor = "#E74C3C",
                     FillColor = "#C0392B",
-                    BorderColor = "#2C3E50",
+                    BorderColor = "#34495E",
                     Alarm = new AlarmSetting
                     {
+                        IsEnabled = true,
                         NormalRange = new Range(60, 100),
                         WarningRange = new Range(50, 120),
                         CriticalRange = new Range(40, 150),
@@ -47,22 +50,67 @@ public class InMemoryPatientRepository : IPatientRepository
                         CriticalColor = "#E74C3C"
                     }
                 },
+                [MonitorType.LeadI] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead I",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
                 [MonitorType.LeadII] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    GraphLabel = "Lead II",
+                    Unit = "mV",
                     StrokeColor = "#2ECC71",
                     FillColor = "#27AE60",
-                    BorderColor = "#2C3E50",
-                    Alarm = new AlarmSetting()
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadIII] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead III",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadAVR] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "aVR",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadAVL] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "aVL",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
                 },
                 [MonitorType.BloodPressure] = new MonitorSetting
                 {
-                    State = MonitorViewState.Both,
+                    State = MonitorViewState.Vital,
+                    GraphLabel = "BP",
+                    Unit = "mmHg",
                     StrokeColor = "#3498DB",
                     FillColor = "#2980B9",
-                    BorderColor = "#2C3E50",
+                    BorderColor = "#34495E",
                     Alarm = new AlarmSetting
                     {
+                        IsEnabled = true,
                         NormalRange = new Range(90, 140),
                         WarningRange = new Range(80, 160),
                         CriticalRange = new Range(70, 180),
@@ -70,14 +118,35 @@ public class InMemoryPatientRepository : IPatientRepository
                         CriticalColor = "#E74C3C"
                     }
                 },
+                [MonitorType.RespiratoryRate] = new MonitorSetting
+                {
+                    State = MonitorViewState.Both,
+                    GraphLabel = "Resp",
+                    Unit = "/min",
+                    StrokeColor = "#3498DB",
+                    FillColor = "#2980B9",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
+                        NormalRange = new Range(12, 20),
+                        WarningRange = new Range(8, 25),
+                        CriticalRange = new Range(5, 30),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                },
                 [MonitorType.SpO2] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    GraphLabel = "SpO₂",
+                    Unit = "%",
                     StrokeColor = "#9B59B6",
                     FillColor = "#8E44AD",
-                    BorderColor = "#2C3E50",
+                    BorderColor = "#34495E",
                     Alarm = new AlarmSetting
                     {
+                        IsEnabled = true,
                         NormalRange = new Range(95, 100),
                         WarningRange = new Range(90, 94),
                         CriticalRange = new Range(0, 89),
@@ -85,17 +154,168 @@ public class InMemoryPatientRepository : IPatientRepository
                         CriticalColor = "#E74C3C"
                     }
                 },
-                [MonitorType.RespiratoryRate] = new MonitorSetting
+                [MonitorType.PulseRate] = new MonitorSetting
                 {
-                    State = MonitorViewState.Vital,
+                    State = MonitorViewState.Both,
+                    GraphLabel = "Pulse",
+                    Unit = "bpm",
                     StrokeColor = "#1ABC9C",
                     FillColor = "#16A085",
-                    BorderColor = "#2C3E50",
+                    BorderColor = "#34495E",
                     Alarm = new AlarmSetting
                     {
+                        IsEnabled = true,
+                        NormalRange = new Range(60, 100),
+                        WarningRange = new Range(50, 120),
+                        CriticalRange = new Range(40, 150),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                }
+            }
+        },
+        new MonitorProfile
+        {
+            Id = "profile-icu",
+            ProfileName = "ICU Standard",
+            MonitorSettings = new Dictionary<MonitorType, MonitorSetting>
+            {
+                [MonitorType.HeartRate] = new MonitorSetting
+                {
+                    State = MonitorViewState.Both,
+                    GraphLabel = "HR",
+                    Unit = "bpm",
+                    StrokeColor = "#E74C3C",
+                    FillColor = "#C0392B",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
+                        NormalRange = new Range(60, 100),
+                        WarningRange = new Range(50, 120),
+                        CriticalRange = new Range(40, 150),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                },
+                [MonitorType.LeadI] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead I",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadII] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead II",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadIII] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead III",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadAVR] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "aVR",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadAVL] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "aVL",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.BloodPressure] = new MonitorSetting
+                {
+                    State = MonitorViewState.Vital,
+                    GraphLabel = "BP",
+                    Unit = "mmHg",
+                    StrokeColor = "#3498DB",
+                    FillColor = "#2980B9",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
+                        NormalRange = new Range(90, 140),
+                        WarningRange = new Range(80, 160),
+                        CriticalRange = new Range(70, 180),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                },
+                [MonitorType.RespiratoryRate] = new MonitorSetting
+                {
+                    State = MonitorViewState.Both,
+                    GraphLabel = "Resp",
+                    Unit = "/min",
+                    StrokeColor = "#3498DB",
+                    FillColor = "#2980B9",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
                         NormalRange = new Range(12, 20),
                         WarningRange = new Range(8, 25),
-                        CriticalRange = new Range(0, 30),
+                        CriticalRange = new Range(5, 30),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                },
+                [MonitorType.SpO2] = new MonitorSetting
+                {
+                    State = MonitorViewState.Vital,
+                    GraphLabel = "SpO₂",
+                    Unit = "%",
+                    StrokeColor = "#9B59B6",
+                    FillColor = "#8E44AD",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
+                        NormalRange = new Range(95, 100),
+                        WarningRange = new Range(90, 94),
+                        CriticalRange = new Range(0, 89),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                },
+                [MonitorType.PulseRate] = new MonitorSetting
+                {
+                    State = MonitorViewState.Both,
+                    GraphLabel = "Pulse",
+                    Unit = "bpm",
+                    StrokeColor = "#1ABC9C",
+                    FillColor = "#16A085",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
+                        NormalRange = new Range(60, 100),
+                        WarningRange = new Range(50, 120),
+                        CriticalRange = new Range(40, 150),
                         WarningColor = "#F39C12",
                         CriticalColor = "#E74C3C"
                     }
@@ -110,12 +330,15 @@ public class InMemoryPatientRepository : IPatientRepository
             {
                 [MonitorType.HeartRate] = new MonitorSetting
                 {
-                    State = MonitorViewState.Vital,
+                    State = MonitorViewState.Both,
+                    GraphLabel = "HR",
+                    Unit = "bpm",
                     StrokeColor = "#E74C3C",
                     FillColor = "#C0392B",
                     BorderColor = "#34495E",
                     Alarm = new AlarmSetting
                     {
+                        IsEnabled = true,
                         NormalRange = new Range(60, 100),
                         WarningRange = new Range(50, 120),
                         CriticalRange = new Range(40, 150),
@@ -123,14 +346,67 @@ public class InMemoryPatientRepository : IPatientRepository
                         CriticalColor = "#E74C3C"
                     }
                 },
+                [MonitorType.LeadI] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead I",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadII] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead II",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadIII] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "Lead III",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadAVR] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "aVR",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
+                [MonitorType.LeadAVL] = new MonitorSetting
+                {
+                    State = MonitorViewState.Graph,
+                    GraphLabel = "aVL",
+                    Unit = "mV",
+                    StrokeColor = "#2ECC71",
+                    FillColor = "#27AE60",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting { IsEnabled = false }
+                },
                 [MonitorType.BloodPressure] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    GraphLabel = "BP",
+                    Unit = "mmHg",
                     StrokeColor = "#3498DB",
                     FillColor = "#2980B9",
                     BorderColor = "#34495E",
                     Alarm = new AlarmSetting
                     {
+                        IsEnabled = true,
                         NormalRange = new Range(90, 140),
                         WarningRange = new Range(80, 160),
                         CriticalRange = new Range(70, 180),
@@ -138,17 +414,56 @@ public class InMemoryPatientRepository : IPatientRepository
                         CriticalColor = "#E74C3C"
                     }
                 },
+                [MonitorType.RespiratoryRate] = new MonitorSetting
+                {
+                    State = MonitorViewState.Both,
+                    GraphLabel = "Resp",
+                    Unit = "/min",
+                    StrokeColor = "#3498DB",
+                    FillColor = "#2980B9",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
+                        NormalRange = new Range(12, 20),
+                        WarningRange = new Range(8, 25),
+                        CriticalRange = new Range(5, 30),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                },
                 [MonitorType.SpO2] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    GraphLabel = "SpO₂",
+                    Unit = "%",
                     StrokeColor = "#9B59B6",
                     FillColor = "#8E44AD",
                     BorderColor = "#34495E",
                     Alarm = new AlarmSetting
                     {
+                        IsEnabled = true,
                         NormalRange = new Range(95, 100),
                         WarningRange = new Range(90, 94),
                         CriticalRange = new Range(0, 89),
+                        WarningColor = "#F39C12",
+                        CriticalColor = "#E74C3C"
+                    }
+                },
+                [MonitorType.PulseRate] = new MonitorSetting
+                {
+                    State = MonitorViewState.Both,
+                    GraphLabel = "Pulse",
+                    Unit = "bpm",
+                    StrokeColor = "#1ABC9C",
+                    FillColor = "#16A085",
+                    BorderColor = "#34495E",
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = true,
+                        NormalRange = new Range(60, 100),
+                        WarningRange = new Range(50, 120),
+                        CriticalRange = new Range(40, 150),
                         WarningColor = "#F39C12",
                         CriticalColor = "#E74C3C"
                     }
@@ -314,6 +629,30 @@ public class InMemoryPatientRepository : IPatientRepository
             episode.Patient = _patients.First(p => p.Id == episode.PatientId);
             episode.Room = _rooms.First(r => r.Id == episode.RoomId);
             episode.MonitorProfile = _monitorProfiles.First(mp => mp.Id == episode.MonitorProfileId);
+
+            // Create a deep copy of the MonitorSettings from the MonitorProfile
+            episode.MonitorSettings = new Dictionary<MonitorType, MonitorSetting>();
+            foreach (var kvp in episode.MonitorProfile.MonitorSettings)
+            {
+                episode.MonitorSettings[kvp.Key] = new MonitorSetting
+                {
+                    State = kvp.Value.State,
+                    GraphLabel = kvp.Value.GraphLabel,
+                    Unit = kvp.Value.Unit,
+                    StrokeColor = kvp.Value.StrokeColor,
+                    FillColor = kvp.Value.FillColor,
+                    BorderColor = kvp.Value.BorderColor,
+                    Alarm = new AlarmSetting
+                    {
+                        IsEnabled = kvp.Value.Alarm.IsEnabled,
+                        NormalRange = new Range(kvp.Value.Alarm.NormalRange.Min, kvp.Value.Alarm.NormalRange.Max),
+                        WarningRange = new Range(kvp.Value.Alarm.WarningRange.Min, kvp.Value.Alarm.WarningRange.Max),
+                        CriticalRange = new Range(kvp.Value.Alarm.CriticalRange.Min, kvp.Value.Alarm.CriticalRange.Max),
+                        WarningColor = kvp.Value.Alarm.WarningColor,
+                        CriticalColor = kvp.Value.Alarm.CriticalColor
+                    }
+                };
+            }
         }
     }
 
