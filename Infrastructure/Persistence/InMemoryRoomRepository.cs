@@ -1,7 +1,7 @@
-using WPFTest.Domain.Entities;
-using WPFTest.Domain.Ports;
+using WPFPatientMonitor.Domain.Entities;
+using WPFPatientMonitor.Domain.Ports;
 
-namespace WPFTest.Infrastructure.Persistence;
+namespace WPFPatientMonitor.Infrastructure.Persistence;
 
 public class InMemoryRoomRepository : IRoomRepository
 {

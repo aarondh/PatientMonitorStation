@@ -1,11 +1,11 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using WPFTest.Domain.Entities;
-using WPFTest.Domain.Ports;
+using WPFPatientMonitor.Domain.Entities;
+using WPFPatientMonitor.Domain.Ports;
 
-namespace WPFTest.Infrastructure.BloodPressureMonitor;
+namespace WPFPatientMonitor.Infrastructure.Adapters.BloodPressureParameter;
 
-public class FakeBloodPressureMonitor : IBloodPressureMonitor, IDisposable
+public class FakeBloodPressureParameterAdapter : IBloodPressureParameter, IDisposable
 {
     private readonly Dictionary<string, Subject<BloodPressureReading>> _streams = new();
     private readonly Dictionary<string, IDisposable> _timers = new();

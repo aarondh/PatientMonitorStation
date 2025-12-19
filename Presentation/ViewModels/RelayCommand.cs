@@ -1,6 +1,6 @@
 using System.Windows.Input;
 
-namespace WPFTest.Presentation.ViewModels;
+namespace WPFPatientMonitor.Presentation.ViewModels;
 
 public class RelayCommand<T> : ICommand
 {

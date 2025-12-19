@@ -1,8 +1,8 @@
-using WPFTest.Domain.Entities;
+using WPFPatientMonitor.Domain.Entities;
 
-namespace WPFTest.Domain.Ports;
+namespace WPFPatientMonitor.Domain.Ports;
 
-public interface IBloodPressureMonitor
+public interface IBloodPressureParameter
 {
     IObservable<BloodPressureReading> GetBloodPressureStream(string patientId);
     void StartMonitoring(string patientId);

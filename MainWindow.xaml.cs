@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using WPFTest.Presentation.ViewModels;
+using WPFPatientMonitor.Presentation.ViewModels;
 
-namespace WPFTest;
+namespace WPFPatientMonitor;
 
 public partial class MainWindow : Window
 {

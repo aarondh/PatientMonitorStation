@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using WPFTest.Application.Services;
-using WPFTest.Presentation.Views;
+using WPFPatientMonitor.Application.Services;
+using WPFPatientMonitor.Presentation.Views;
 
-namespace WPFTest.Presentation.ViewModels;
+namespace WPFPatientMonitor.Presentation.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

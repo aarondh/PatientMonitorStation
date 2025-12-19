@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace WPFTest.Presentation.Controls;
+namespace WPFPatientMonitor.Presentation.Controls;
 
 public partial class PatientInformationControl : UserControl
 {

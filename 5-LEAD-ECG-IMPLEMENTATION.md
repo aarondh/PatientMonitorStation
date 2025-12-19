@@ -1,6 +1,6 @@
-# 5-Lead ECG Implementation
+# 5-Lead ECG Parameter Implementation
 
-The fake heart monitor has been updated to simulate a 5-lead ECG system, providing multiple perspectives of the heart's electrical activity.
+The ECG parameter adapter has been implemented to simulate a 5-lead ECG system, providing multiple perspectives of the heart's electrical activity.
 
 ## ECG Leads Implemented
 
@@ -77,31 +77,51 @@ All leads include realistic variations:
 
 ## Display Layout
 
-Each patient room displays all 6 waveforms in a scrollable view:
-- Lead I (green)
-- Lead II (green)
-- Lead III (green)
-- aVR (green)
-- aVL (green)
-- RESP (red) - Respiratory rate
-
-All waveforms update in real-time at 100 Hz (10ms intervals) for smooth visualization.
+The patient monitoring interface displays ECG waveforms with real-time updates at 100 Hz (10ms intervals) for smooth visualization. The waveform data is streamed through observable collections for reactive UI updates.
 
 ## Technical Implementation
 
 ### Domain Layer
-- [HeartRateReading.cs](Domain/Entities/HeartRateReading.cs): Extended to include all 5 lead values
+
+- [EcgReading.cs](Domain/Entities/EcgReading.cs): Entity containing all ECG data
+  - `Value`: Primary heart rate value
+  - `LeadI`, `LeadII`, `LeadIII`: Limb lead waveform values
+  - `LeadAVR`, `LeadAVL`: Augmented limb lead waveform values
+  - `Timestamp`: Reading timestamp
+- [IEcgParameters.cs](Domain/Ports/IEcgParameters.cs): Port interface defining the ECG parameter adapter contract
+  - `IObservable<EcgReading> GetEcgParameterStream(string patientId)`: Returns reactive stream of ECG readings
+  - `void StartMonitoring(string patientId)`: Initiates ECG monitoring for a specific patient
+  - `void StopMonitoring(string patientId)`: Stops ECG monitoring for a specific patient
 
 ### Infrastructure Layer
-- [FakeHeartRateMonitor.cs](Infrastructure/HeartRateMonitor/FakeHeartRateMonitor.cs):
-  - Generates synchronized waveforms for all leads
-  - Each lead uses different amplitude scaling
-  - aVR uses inverted polarity
-  - Complete PQRST complex simulation
+
+- [FakeEcgParametersAdapter.cs](Infrastructure/Adapters/EcgParameters/FakeEcgParameterAdapter.cs):
+  - Implements the hexagonal architecture adapter pattern
+  - Manages per-patient observable streams using Reactive Extensions (Rx)
+  - Contains internal `HeartBeatGenerator` class for ECG waveform simulation
+  - Updates at 100 Hz (10ms intervals) for smooth real-time waveforms
+  - Generates synchronized waveforms for all 5 leads with proper amplitude scaling
+  - Each lead uses different amplitude scaling (Lead I: 0.7, Lead II: 1.0, Lead III: 0.5, aVR: -0.6, aVL: 0.4)
+  - aVR uses inverted polarity (-0.6) as seen in real ECG systems
+  - Complete PQRST complex simulation with physiologically accurate phase durations
+  - Implements `IDisposable` for proper resource cleanup
+
+### Application Layer
+
+- [MonitoringService.cs](Application/Services/MonitoringService.cs:66-70):
+  - `MonitorHeartRate(string patientId)` method orchestrates ECG monitoring
+  - Starts monitoring and returns the observable stream
+  - Integrates with other monitoring parameters (BP, Respiratory, Pulse Oximetry)
 
 ### Presentation Layer
-- [RoomMonitorViewModel.cs](Presentation/ViewModels/RoomMonitorViewModel.cs): Tracks data for all 5 leads
-- [MainWindow.xaml](MainWindow.xaml): Displays all leads in labeled, scrollable graphs
+
+- [PatientMonitorViewModel.cs](Presentation/ViewModels/PatientMonitorViewModel.cs):
+  - Property: `CurrentHeartRate` for displaying current BPM value
+  - Observable collections for each lead: `HeartRateData`, `LeadIData`, `LeadIIData`, `LeadIIIData`, `LeadAVRData`, `LeadAVLData`
+  - Subscribes to ECG stream in `StartMonitoring()` method (lines 200-225)
+  - Updates UI on dispatcher thread for thread-safe WPF binding
+  - Maintains sliding window of max 500 data points per lead for efficient rendering
+  - Proper disposal pattern for unsubscribing from streams
 
 ## Medical Accuracy
 

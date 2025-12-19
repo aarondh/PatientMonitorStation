@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace WPFTest.Presentation.Controls;
+namespace WPFPatientMonitor.Presentation.Controls;
 
 public partial class MonitorGraph : UserControl
 {

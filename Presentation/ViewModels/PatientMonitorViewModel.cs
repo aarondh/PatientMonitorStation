@@ -1,8 +1,8 @@
 using System.Collections.ObjectModel;
-using WPFTest.Application.Services;
-using WPFTest.Domain.Entities;
+using WPFPatientMonitor.Application.Services;
+using WPFPatientMonitor.Domain.Entities;
 
-namespace WPFTest.Presentation.ViewModels;
+namespace WPFPatientMonitor.Presentation.ViewModels;
 
 public class PatientMonitorViewModel : ViewModelBase, IDisposable
 {
@@ -201,6 +201,7 @@ public class PatientMonitorViewModel : ViewModelBase, IDisposable
             .MonitorHeartRate(PatientId)
             .Subscribe(reading =>
             {
+
                 System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
                     CurrentHeartRate = reading.Value;

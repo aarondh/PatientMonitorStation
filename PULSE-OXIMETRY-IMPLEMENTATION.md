@@ -1,6 +1,6 @@
-# Pulse Oximetry Monitor Implementation
+# Pulse Oximetry Parameter Implementation
 
-The application now includes a fake pulse oximetry monitor that tracks two critical vital signs: oxygen saturation (SpO2) and pulse rate.
+The application now includes a fake pulse oximetry parameter adapter that tracks two critical vital signs: oxygen saturation (SpO2) and pulse rate.
 
 ## What is Pulse Oximetry?
 
@@ -25,7 +25,7 @@ Pulse oximetry is a non-invasive method for monitoring a patient's oxygen satura
 
 ## Physiological Simulation
 
-The FakePulseOximetryMonitor generates realistic variations:
+The FakePulseOximetryParameterAdapter (via its internal PulseOxGenerator) generates realistic variations:
 
 ### SpO2 Variations
 - **Breathing Effect** (±0.5%): Small fluctuations with each breath
@@ -41,35 +41,44 @@ The FakePulseOximetryMonitor generates realistic variations:
 
 ## Display
 
-The SpO2 reading is displayed in **purple** (#9B59B6) in a floating badge at the top-right of each patient room, next to the respiratory rate display.
-
-### Display Format
-```
-┌──────────┐  ┌────────┐
-│ SpO2     │  │ RESP   │
-│   97 %   │  │  14/min│
-└──────────┘  └────────┘
-```
+The SpO2 and Pulse Rate readings are displayed as part of the patient monitoring interface, updated in real-time through observable streams.
 
 ## Technical Implementation
 
 ### Domain Layer
-- [PulseOximetryReading.cs](Domain/Entities/PulseOximetryReading.cs): Entity containing SpO2 and pulse rate
-- [IPulseOximetryMonitor.cs](Domain/Ports/IPulseOximetryMonitor.cs): Port interface for pulse oximetry monitoring
+
+- [PulseOximetryReading.cs](Domain/Entities/PulseOximetryReading.cs): Entity containing SpO2 and pulse rate with timestamp
+- [IPulseOximetryParameter.cs](Domain/Ports/IPulseOximetryParameter.cs): Port interface defining the parameter adapter contract
+  - `IObservable<PulseOximetryReading> GetPulseOximetryStream(string patientId)`: Returns reactive stream of readings
+  - `void StartMonitoring(string patientId)`: Initiates monitoring for a specific patient
+  - `void StopMonitoring(string patientId)`: Stops monitoring for a specific patient
 
 ### Infrastructure Layer
-- [FakePulseOximetryMonitor.cs](Infrastructure/PulseOximetryMonitor/FakePulseOximetryMonitor.cs):
+
+- [FakePulseOximetryParameterAdapter.cs](Infrastructure/Adapters/PulseOximetryParameter/FakePulseOximetryParameterAdapter.cs):
+  - Implements the hexagonal architecture adapter pattern
+  - Manages per-patient observable streams using Reactive Extensions (Rx)
+  - Contains internal `PulseOxGenerator` class for physiological simulation
   - Generates realistic SpO2 values (90-100%)
   - Generates correlated pulse rate (40-180 BPM)
   - Updates every 1 second (typical for pulse oximeters)
   - Includes multiple physiological variation patterns
+  - Implements `IDisposable` for proper resource cleanup
 
 ### Application Layer
-- [MonitoringService.cs](Application/Services/MonitoringService.cs): Added MonitorPulseOximetry method
+
+- [MonitoringService.cs](Application/Services/MonitoringService.cs:84-88):
+  - `MonitorPulseOximetry(string patientId)` method orchestrates monitoring
+  - Starts monitoring and returns the observable stream
+  - Integrates with other monitoring parameters (ECG, BP, Respiratory)
 
 ### Presentation Layer
-- [RoomMonitorViewModel.cs](Presentation/ViewModels/RoomMonitorViewModel.cs): Added CurrentSpO2 and CurrentPulseRate properties
-- [MainWindow.xaml](MainWindow.xaml): Added SpO2 display badge
+
+- [PatientMonitorViewModel.cs](Presentation/ViewModels/PatientMonitorViewModel.cs):
+  - Properties: `CurrentSpO2` and `CurrentPulseRate` for data binding
+  - Subscribes to pulse oximetry stream in `StartMonitoring()` method (lines 254-263)
+  - Updates UI on dispatcher thread for thread-safe WPF binding
+  - Proper disposal pattern for unsubscribing from streams
 
 ## Clinical Context
 
@@ -80,10 +89,13 @@ In a real medical setting, pulse oximetry:
 - **Dual Measurement**: Simultaneously measures both oxygenation and pulse
 - **Critical Care**: Essential in ICU, OR, emergency, and post-operative settings
 
-## Integration with Other Monitors
+## Integration with Other Parameters
 
-The pulse oximeter works alongside:
-- **5-Lead ECG**: Pulse rate should correlate with heart rate from Lead II
-- **Blood Pressure Monitor**: Low SpO2 may indicate need for BP assessment
-- **Respiratory Monitor**: Low SpO2 correlates with inadequate respiratory rate
-- All monitors update independently with realistic timing intervals
+The pulse oximetry parameter works alongside other monitoring parameters in a unified system:
+
+- **ECG Parameters**: Pulse rate should correlate with heart rate from Lead II
+- **Blood Pressure Parameter**: Low SpO2 may indicate need for BP assessment
+- **Respiratory Parameter**: Low SpO2 correlates with inadequate respiratory rate
+- All parameters update independently with realistic timing intervals
+- Each parameter follows the hexagonal architecture pattern with domain ports and infrastructure adapters
+- Observable streams enable reactive, real-time updates across the entire monitoring system

@@ -1,11 +1,12 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WPFTest.Domain.Entities;
+namespace WPFPatientMonitor.Domain.Entities;
 
 public class MonitorSetting : INotifyPropertyChanged
 {
     private MonitorViewState _state = MonitorViewState.Both;
+    private string _label = string.Empty;
     private string _graphLabel = string.Empty;
     private string _unit = string.Empty;
     private string _strokeColor = "#2ECC71";
@@ -17,6 +18,12 @@ public class MonitorSetting : INotifyPropertyChanged
     {
         get => _state;
         set => SetProperty(ref _state, value);
+    }
+
+    public string Label
+    {
+        get => _label;
+        set => SetProperty(ref _label, value);
     }
 
     public string GraphLabel

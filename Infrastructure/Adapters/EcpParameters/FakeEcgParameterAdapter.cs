@@ -1,18 +1,18 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using WPFTest.Domain.Entities;
-using WPFTest.Domain.Ports;
+using WPFPatientMonitor.Domain.Entities;
+using WPFPatientMonitor.Domain.Ports;
 
-namespace WPFTest.Infrastructure.EcgMonitor;
+namespace WPFPatientMonitor.Infrastructure.Adapters.EcgParameters;
 
-public class FakeEcgMonitor : IEcgMonitor, IDisposable
+public class FakeEcgParametersAdapter : IEcgParameters, IDisposable
 {
     private readonly Dictionary<string, Subject<EcgReading>> _streams = new();
     private readonly Dictionary<string, IDisposable> _timers = new();
     private readonly Dictionary<string, HeartBeatGenerator> _generators = new();
     private readonly Random _random = new();
 
-    public IObservable<EcgReading> GetHeartRateStream(string patientId)
+    public IObservable<EcgReading> GetEcgParameterStream(string patientId)
     {
         if (!_streams.ContainsKey(patientId))
         {

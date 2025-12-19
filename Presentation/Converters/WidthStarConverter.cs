@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace WPFTest.Presentation.Converters;
+namespace WPFPatientMonitor.Presentation.Converters;
 
 public class WidthStarConverter : IValueConverter
 {

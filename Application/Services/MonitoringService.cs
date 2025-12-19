@@ -1,22 +1,22 @@
-using WPFTest.Domain.Entities;
-using WPFTest.Domain.Ports;
+using WPFPatientMonitor.Domain.Entities;
+using WPFPatientMonitor.Domain.Ports;
 
-namespace WPFTest.Application.Services;
+namespace WPFPatientMonitor.Application.Services;
 
 public class MonitoringService
 {
-    private readonly IEcgMonitor _heartRateMonitor;
-    private readonly IBloodPressureMonitor _bloodPressureMonitor;
-    private readonly IRespiratoryMonitor _respiratoryMonitor;
-    private readonly IPulseOximetryMonitor _pulseOximetryMonitor;
+    private readonly IEcgParameters _heartRateMonitor;
+    private readonly IBloodPressureParameter _bloodPressureMonitor;
+    private readonly IRespiratoryParameter _respiratoryMonitor;
+    private readonly IPulseOximetryParameter _pulseOximetryMonitor;
     private readonly IRoomRepository _roomRepository;
     private readonly IPatientRepository _patientRepository;
 
     public MonitoringService(
-        IEcgMonitor heartRateMonitor,
-        IBloodPressureMonitor bloodPressureMonitor,
-        IRespiratoryMonitor respiratoryMonitor,
-        IPulseOximetryMonitor pulseOximetryMonitor,
+        IEcgParameters heartRateMonitor,
+        IBloodPressureParameter bloodPressureMonitor,
+        IRespiratoryParameter respiratoryMonitor,
+        IPulseOximetryParameter pulseOximetryMonitor,
         IRoomRepository roomRepository,
         IPatientRepository patientRepository)
     {
@@ -66,7 +66,7 @@ public class MonitoringService
     public IObservable<EcgReading> MonitorHeartRate(string patientId)
     {
         _heartRateMonitor.StartMonitoring(patientId);
-        return _heartRateMonitor.GetHeartRateStream(patientId);
+        return _heartRateMonitor.GetEcgParameterStream(patientId);
     }
 
     public IObservable<BloodPressureReading> MonitorBloodPressure(string patientId)

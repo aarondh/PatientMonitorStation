@@ -1,14 +1,14 @@
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
-using WPFTest.Domain.Ports;
-using WPFTest.Infrastructure.EcgMonitor;
-using WPFTest.Infrastructure.BloodPressureMonitor;
-using WPFTest.Infrastructure.RespiratoryMonitor;
-using WPFTest.Infrastructure.PulseOximetryMonitor;
-using WPFTest.Infrastructure.Persistence;
-using WPFTest.Presentation.ViewModels;
+using WPFPatientMonitor.Domain.Ports;
+using WPFPatientMonitor.Infrastructure.Adapters.EcgParameters;
+using WPFPatientMonitor.Infrastructure.Adapters.RespiratoryParameter;
+using WPFPatientMonitor.Infrastructure.Adapters.PulseOximetryParameter;
+using WPFPatientMonitor.Infrastructure.Persistence;
+using WPFPatientMonitor.Presentation.ViewModels;
+using WPFPatientMonitor.Infrastructure.Adapters.BloodPressureParameter;
 
-namespace WPFTest;
+namespace WPFPatientMonitor;
 
 public partial class App : System.Windows.Application
 {
@@ -38,10 +38,10 @@ public partial class App : System.Windows.Application
 
     private void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<IEcgMonitor, FakeEcgMonitor>();
-        services.AddSingleton<IBloodPressureMonitor, FakeBloodPressureMonitor>();
-        services.AddSingleton<IRespiratoryMonitor, FakeRespiratoryMonitor>();
-        services.AddSingleton<IPulseOximetryMonitor, FakePulseOximetryMonitor>();
+        services.AddSingleton<IEcgParameters, FakeEcgParametersAdapter>();
+        services.AddSingleton<IBloodPressureParameter, FakeBloodPressureParameterAdapter>();
+        services.AddSingleton<IRespiratoryParameter, FakeRespiratoryParameterAdapter>();
+        services.AddSingleton<IPulseOximetryParameter, FakePulseOximetryParameterAdapter>();
         services.AddSingleton<IRoomRepository, InMemoryRoomRepository>();
         services.AddSingleton<IPatientRepository, InMemoryPatientRepository>();
         services.AddSingleton<Application.Services.MonitoringService>();
@@ -63,10 +63,10 @@ public partial class App : System.Windows.Application
 
     protected override void OnExit(ExitEventArgs e)
     {
-        DisposeMonitor<IEcgMonitor>();
-        DisposeMonitor<IBloodPressureMonitor>();
-        DisposeMonitor<IRespiratoryMonitor>();
-        DisposeMonitor<IPulseOximetryMonitor>();
+        DisposeMonitor<IEcgParameters>();
+        DisposeMonitor<IBloodPressureParameter>();
+        DisposeMonitor<IRespiratoryParameter>();
+        DisposeMonitor<IPulseOximetryParameter>();
 
         _serviceProvider.Dispose();
         base.OnExit(e);

@@ -1,8 +1,8 @@
-using WPFTest.Domain.Entities;
-using WPFTest.Domain.Ports;
-using Range = WPFTest.Domain.Entities.Range;
+using WPFPatientMonitor.Domain.Entities;
+using WPFPatientMonitor.Domain.Ports;
+using Range = WPFPatientMonitor.Domain.Entities.Range;
 
-namespace WPFTest.Infrastructure.Persistence;
+namespace WPFPatientMonitor.Infrastructure.Persistence;
 
 public class InMemoryPatientRepository : IPatientRepository
 {
@@ -35,6 +35,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.HeartRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Heart Rate",
                     GraphLabel = "HR",
                     Unit = "bpm",
                     StrokeColor = "#E74C3C",
@@ -53,6 +54,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadI] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead I",
                     GraphLabel = "Lead I",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -63,6 +65,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadII] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead II",
                     GraphLabel = "Lead II",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -73,6 +76,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadIII] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead III",
                     GraphLabel = "Lead III",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -83,6 +87,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadAVR] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead aVR",
                     GraphLabel = "aVR",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -93,6 +98,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadAVL] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead aVL",
                     GraphLabel = "aVL",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -103,6 +109,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.BloodPressure] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    Label = "Blood Pressure",
                     GraphLabel = "BP",
                     Unit = "mmHg",
                     StrokeColor = "#3498DB",
@@ -121,6 +128,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.RespiratoryRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Respiratory Rate",
                     GraphLabel = "Resp",
                     Unit = "/min",
                     StrokeColor = "#3498DB",
@@ -139,6 +147,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.SpO2] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    Label = "SpO₂",
                     GraphLabel = "SpO₂",
                     Unit = "%",
                     StrokeColor = "#9B59B6",
@@ -157,6 +166,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.PulseRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Pulse Rate",
                     GraphLabel = "Pulse",
                     Unit = "bpm",
                     StrokeColor = "#1ABC9C",
@@ -183,6 +193,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.HeartRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Heart Rate",
                     GraphLabel = "HR",
                     Unit = "bpm",
                     StrokeColor = "#E74C3C",
@@ -201,6 +212,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadI] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead I",
                     GraphLabel = "Lead I",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -211,6 +223,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadII] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead II",
                     GraphLabel = "Lead II",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -221,6 +234,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadIII] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead III",
                     GraphLabel = "Lead III",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -231,6 +245,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadAVR] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead aVR",
                     GraphLabel = "aVR",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -241,6 +256,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadAVL] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead aVL",
                     GraphLabel = "aVL",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -251,6 +267,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.BloodPressure] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    Label = "Blood Pressure",
                     GraphLabel = "BP",
                     Unit = "mmHg",
                     StrokeColor = "#3498DB",
@@ -269,6 +286,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.RespiratoryRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Respiratory Rate",
                     GraphLabel = "Resp",
                     Unit = "/min",
                     StrokeColor = "#3498DB",
@@ -287,6 +305,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.SpO2] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    Label = "SpO₂",
                     GraphLabel = "SpO₂",
                     Unit = "%",
                     StrokeColor = "#9B59B6",
@@ -305,6 +324,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.PulseRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Pulse Rate",
                     GraphLabel = "Pulse",
                     Unit = "bpm",
                     StrokeColor = "#1ABC9C",
@@ -331,6 +351,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.HeartRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Heart Rate",
                     GraphLabel = "HR",
                     Unit = "bpm",
                     StrokeColor = "#E74C3C",
@@ -349,6 +370,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadI] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead I",
                     GraphLabel = "Lead I",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -359,6 +381,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadII] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead II",
                     GraphLabel = "Lead II",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -369,6 +392,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadIII] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead III",
                     GraphLabel = "Lead III",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -379,6 +403,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadAVR] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead aVR",
                     GraphLabel = "aVR",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -389,6 +414,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.LeadAVL] = new MonitorSetting
                 {
                     State = MonitorViewState.Graph,
+                    Label = "ECG Lead aVL",
                     GraphLabel = "aVL",
                     Unit = "mV",
                     StrokeColor = "#2ECC71",
@@ -399,6 +425,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.BloodPressure] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    Label = "Blood Pressure",
                     GraphLabel = "BP",
                     Unit = "mmHg",
                     StrokeColor = "#3498DB",
@@ -417,6 +444,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.RespiratoryRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Respiratory Rate",
                     GraphLabel = "Resp",
                     Unit = "/min",
                     StrokeColor = "#3498DB",
@@ -435,6 +463,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.SpO2] = new MonitorSetting
                 {
                     State = MonitorViewState.Vital,
+                    Label = "SpO₂",
                     GraphLabel = "SpO₂",
                     Unit = "%",
                     StrokeColor = "#9B59B6",
@@ -453,6 +482,7 @@ public class InMemoryPatientRepository : IPatientRepository
                 [MonitorType.PulseRate] = new MonitorSetting
                 {
                     State = MonitorViewState.Both,
+                    Label = "Pulse Rate",
                     GraphLabel = "Pulse",
                     Unit = "bpm",
                     StrokeColor = "#1ABC9C",

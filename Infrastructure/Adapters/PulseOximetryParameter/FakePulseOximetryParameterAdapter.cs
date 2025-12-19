@@ -1,11 +1,11 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using WPFTest.Domain.Entities;
-using WPFTest.Domain.Ports;
+using WPFPatientMonitor.Domain.Entities;
+using WPFPatientMonitor.Domain.Ports;
 
-namespace WPFTest.Infrastructure.PulseOximetryMonitor;
+namespace WPFPatientMonitor.Infrastructure.Adapters.PulseOximetryParameter;
 
-public class FakePulseOximetryMonitor : IPulseOximetryMonitor, IDisposable
+public class FakePulseOximetryParameterAdapter : IPulseOximetryParameter, IDisposable
 {
     private readonly Dictionary<string, Subject<PulseOximetryReading>> _streams = new();
     private readonly Dictionary<string, IDisposable> _timers = new();

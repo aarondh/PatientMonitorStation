@@ -1,11 +1,11 @@
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using WPFTest.Domain.Entities;
-using WPFTest.Domain.Ports;
+using WPFPatientMonitor.Domain.Entities;
+using WPFPatientMonitor.Domain.Ports;
 
-namespace WPFTest.Infrastructure.RespiratoryMonitor;
+namespace WPFPatientMonitor.Infrastructure.Adapters.RespiratoryParameter;
 
-public class FakeRespiratoryMonitor : IRespiratoryMonitor, IDisposable
+public class FakeRespiratoryParameterAdapter : IRespiratoryParameter, IDisposable
 {
     private readonly Dictionary<string, Subject<RespiratoryReading>> _streams = new();
     private readonly Dictionary<string, IDisposable> _timers = new();

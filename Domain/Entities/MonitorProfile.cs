@@ -1,4 +1,4 @@
-namespace WPFTest.Domain.Entities;
+namespace WPFPatientMonitor.Domain.Entities;
 
 public class MonitorProfile
 {

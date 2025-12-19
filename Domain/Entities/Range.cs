@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WPFTest.Domain.Entities;
+namespace WPFPatientMonitor.Domain.Entities;
 
 public class Range : INotifyPropertyChanged
 {

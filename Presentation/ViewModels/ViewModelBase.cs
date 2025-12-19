@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace WPFTest.Presentation.ViewModels;
+namespace WPFPatientMonitor.Presentation.ViewModels;
 
 public class ViewModelBase : INotifyPropertyChanged
 {

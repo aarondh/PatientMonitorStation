@@ -1,9 +1,10 @@
-<Window x:Class="WPFTest.Presentation.Views.PatientDetailsWindow"
+<Window x:Class="WPFPatientMonitor.Presentation.Views.PatientDetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controls="clr-namespace:WPFTest.Presentation.Controls"
+        xmlns:controls="clr-namespace:WPFPatientMonitor.Presentation.Controls"
+        xmlns:entities="clr-namespace:WPFPatientMonitor.Domain.Entities;assembly=WPFTest"
         mc:Ignorable="d"
         Title="Patient Details" Height="600" Width="800"
         Background="#0f0f0f">
@@ -67,7 +68,7 @@
                                             <controls:MonitorGraph Data="{Binding PatientMonitor.LeadIData}" 
                                                                  StrokeColor="#2ECC71" 
                                                                  Height="60"/>
-                                            <TextBlock Text="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadI].GraphLabel, FallbackValue='Lead I'}" 
+                                            <TextBlock Text="Lead I" 
                                                        FontSize="10" 
                                                        Foreground="#2ECC71" 
                                                        Margin="5" 
@@ -481,57 +482,19 @@
                                    Foreground="#2ECC71"
                                    Margin="0,0,0,15"/>
 
-                        <UniformGrid Columns="3">
-                            <!-- Heart Rate Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="Heart Rate"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.HeartRate]}" />
-
-                            <!-- Lead I Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="ECG Lead I"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadI]}" />
-
-                            <!-- Lead II Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="ECG Lead II"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadII]}" />
-
-                            <!-- Lead III Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="ECG Lead III"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadIII]}" />
-
-                            <!-- Lead aVR Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="ECG Lead aVR"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadAVR]}" />
-
-                            <!-- Lead aVL Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="ECG Lead aVL"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.LeadAVL]}" />
-
-                            <!-- Blood Pressure Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="Blood Pressure"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.BloodPressure]}" />
-
-                            <!-- Respiratory Rate Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="Respiratory Rate"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.RespiratoryRate]}" />
-
-                            <!-- SpO2 Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="SpO₂"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.SpO2]}" />
-
-                            <!-- Pulse Rate Monitor -->
-                            <controls:MonitorSettingEditor
-                                MonitorName="Pulse Rate"
-                                Setting="{Binding PatientMonitor.MonitorSettings[MonitorType.PulseRate]}" />
-                        </UniformGrid>
+                        <ItemsControl ItemsSource="{Binding AllMonitorSettings}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="3"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                        <controls:MonitorSettingEditor
+                                            DataContext="{Binding}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </Border>
             </StackPanel>
