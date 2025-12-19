@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "WpfTest",
+            "name": "WpfPatientMonitor",
             "type": "dotnet",
             "request": "launch",
-            "projectPath": "${workspaceFolder}\\WPFTest.csproj",
+            "projectPath": "${workspaceFolder}\\WpfPatientMonitor.csproj",
             "preLaunchTask": "build"
         }
     ]
